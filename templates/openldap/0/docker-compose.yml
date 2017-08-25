@@ -36,7 +36,6 @@ services:
     volumes:
       - ./data/environment/env.yaml:/container/environment/01-custom/env.yaml
     # command: --loglevel debug
-
     expose:
       - "80"
       - "443"
