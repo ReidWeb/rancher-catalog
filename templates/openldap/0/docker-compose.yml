@@ -5,13 +5,13 @@ services:
     domainname: {domain_name}
     hostname: ldap
     environment:
-      LDAP_ORGANISATION: ${org_name}
-      LDAP_DOMAIN: ${domain_name}
-      LDAP_ADMIN_PASSWORD: ${admin_pwd}
-      LDAP_READONLY_USER: ${readonly_user}
-      LDAP_BASE_DN: ${base_dn}
-      LDAP_READONLY_USER_USERNAME: ${readonly_user_username}
-      LDAP_READONLY_USER_PASSWORD: ${readonly_user_password}
+      LDAP_ORGANISATION: "${org_name}"
+      LDAP_DOMAIN: "${domain_name}"
+      LDAP_ADMIN_PASSWORD: "${admin_pwd}"
+      LDAP_READONLY_USER: "${readonly_user}"
+      LDAP_BASE_DN: "${base_dn}"
+      LDAP_READONLY_USER_USERNAME: "${readonly_user_username}"
+      LDAP_READONLY_USER_PASSWORD: "${readonly_user_password}"
     volumes:
       - /srv/openldap/var/lib/ldap:/var/lib/ldap:rw
       - /srv/openldap/etc/ldap/slapd.d:/etc/ldap/slapd.d:rw
@@ -26,14 +26,14 @@ services:
     links:
       - ldap-host
     environment:
-      LDAP_ORGANISATION: ${org_name}
-      LDAP_DOMAIN: ${domain_name}
-      LDAP_ADMIN_PASSWORD: ${admin_pwd}
+      LDAP_ORGANISATION: "${org_name}"
+      LDAP_DOMAIN: "${domain_name}"
+      LDAP_ADMIN_PASSWORD: "${admin_pwd}"
       LDAP_READONLY_USER: ${readonly_user}
-      LDAP_BASE_DN: ${base_dn}
-      LDAP_READONLY_USER_USERNAME: ${readonly_user_username}
-      LDAP_READONLY_USER_PASSWORD: ${readonly_user_password}
-      PHPLDAPADMIN_SERVER_ADMIN: ${admin_email}
+      LDAP_BASE_DN: "${base_dn}"
+      LDAP_READONLY_USER_USERNAME: "${readonly_user_username}"
+      LDAP_READONLY_USER_PASSWORD: "${readonly_user_password}"
+      PHPLDAPADMIN_SERVER_ADMIN: "${admin_email}"
       PHPLDAPADMIN_HTTPS: ${admin_ui_https}
       PHPLDAPADMIN_LDAP_CLIENT_TLS: ${client_tls}
     volumes:
