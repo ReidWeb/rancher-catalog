@@ -25,9 +25,14 @@ services:
       - ldap-host
     links:
       - ldap-host
-    extends:
-      service: ldap-variables
-      file:  docker-compose-variables.yaml
+    environment:
+      LDAP_ORGANISATION: "ReidWeb"
+      LDAP_DOMAIN: "reidweb.com"
+      LDAP_ADMIN_PASSWORD: "adm1n"
+      LDAP_READONLY_USER: "true"
+      LDAP_BASE_DN: "dc=reidweb,dc=com"
+      LDAP_READONLY_USER_USERNAME: readonly
+      LDAP_READONLY_USER_PASSWORD: readonly
     volumes:
       - ./data/environment/env.yaml:/container/environment/01-custom/env.yaml
     # command: --loglevel debug
