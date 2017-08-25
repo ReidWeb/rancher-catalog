@@ -4,15 +4,14 @@ services:
     image: "osixia/openldap:1.1.2"
     domainname: reidweb.com
     hostname: ldap
-    extends
-      environment:
-        LDAP_ORGANISATION: "ReidWeb"
-        LDAP_DOMAIN: "reidweb.com"
-        LDAP_ADMIN_PASSWORD: "adm1n"
-        LDAP_READONLY_USER: "true"
-        LDAP_BASE_DN: "dc=reidweb,dc=com"
-        LDAP_READONLY_USER_USERNAME: readonly
-        LDAP_READONLY_USER_PASSWORD: readonly
+    environment:
+      LDAP_ORGANISATION: "ReidWeb"
+      LDAP_DOMAIN: "reidweb.com"
+      LDAP_ADMIN_PASSWORD: "adm1n"
+      LDAP_READONLY_USER: "true"
+      LDAP_BASE_DN: "dc=reidweb,dc=com"
+      LDAP_READONLY_USER_USERNAME: readonly
+      LDAP_READONLY_USER_PASSWORD: readonly
     volumes:
       - /srv/openldap/var/lib/ldap:/var/lib/ldap:rw
       - /srv/openldap/etc/ldap/slapd.d:/etc/ldap/slapd.d:rw
