@@ -34,7 +34,7 @@ services:
       LDAP_READONLY_USER_USERNAME: readonly
       LDAP_READONLY_USER_PASSWORD: readonly
     volumes:
-      - ./data/environment/env.yaml:/container/environment/01-custom/env.yaml
+      - /home/reid/tmp/env.yaml:/container/environment/01-custom/env.yaml
     # command: --loglevel debug
     expose:
       - "80"
