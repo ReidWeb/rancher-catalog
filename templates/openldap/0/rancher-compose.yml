@@ -59,13 +59,13 @@
       type: "string"
       default: "you@example.com"
       required: true
-   - variable: "admin_ui_https"
-     label: "PHPLDAPAdmin UI HTTPS"
-     description: |
-       Whether to use HTTPS for PHPLDAPAdmin Web UI
-     type: "boolean"
-     default: true
-     required: true
+    - variable: "admin_ui_https"
+      label: "PHPLDAPAdmin UI HTTPS"
+      description: |
+        Whether to use HTTPS for PHPLDAPAdmin Web UI
+      type: "boolean"
+      default: true
+      required: true
     - variable: "client_tls"
       label: "PHPLDAPAdmin UI client TLS"
       description: |
