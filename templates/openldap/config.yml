@@ -1,5 +1,5 @@
-name: OpenLDAP (ReidWeb)
+name: OpenLDAP
 description: |
-  OpenLDAP instance
+  OpenLDAP Software is an open source implementation of the Lightweight Directory Access Protocol. This catalog item provides both OpenLDAP and the admin UI PHPLDAPAdmin.
 version: 1.1.2
 category: Administration

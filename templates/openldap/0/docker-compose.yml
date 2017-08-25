@@ -2,23 +2,23 @@ version: '2'
 services:
   ldap-host:
     image: "osixia/openldap:1.1.9"
-    domainname: reidweb.com
+    domainname: {domain_name}
     hostname: ldap
     environment:
-      LDAP_ORGANISATION: "ReidWeb"
-      LDAP_DOMAIN: "reidweb.com"
-      LDAP_ADMIN_PASSWORD: "adm1n"
-      LDAP_READONLY_USER: "true"
-      LDAP_BASE_DN: "dc=reidweb,dc=com"
-      LDAP_READONLY_USER_USERNAME: readonly
-      LDAP_READONLY_USER_PASSWORD: readonly
+      LDAP_ORGANISATION: ${org_name}
+      LDAP_DOMAIN: ${domain_name}
+      LDAP_ADMIN_PASSWORD: ${admin_pwd}
+      LDAP_READONLY_USER: ${readonly_user}
+      LDAP_BASE_DN: ${base_dn}
+      LDAP_READONLY_USER_USERNAME: ${readonly_user_username}
+      LDAP_READONLY_USER_PASSWORD: ${readonly_user_password}
     volumes:
       - /srv/openldap/var/lib/ldap:/var/lib/ldap:rw
       - /srv/openldap/etc/ldap/slapd.d:/etc/ldap/slapd.d:rw
     expose:
       - "389"
     ports:
-      - "389:389"
+      - "${ldap_external_port}:389"
   ldap-admin:
     image: "osixia/phpldapadmin:0.7.1"
     depends_on:
@@ -26,13 +26,16 @@ services:
     links:
       - ldap-host
     environment:
-      LDAP_ORGANISATION: "ReidWeb"
-      LDAP_DOMAIN: "reidweb.com"
-      LDAP_ADMIN_PASSWORD: "adm1n"
-      LDAP_READONLY_USER: "true"
-      LDAP_BASE_DN: "dc=reidweb,dc=com"
-      LDAP_READONLY_USER_USERNAME: readonly
-      LDAP_READONLY_USER_PASSWORD: readonly
+      LDAP_ORGANISATION: ${org_name}
+      LDAP_DOMAIN: ${domain_name}
+      LDAP_ADMIN_PASSWORD: ${admin_pwd}
+      LDAP_READONLY_USER: ${readonly_user}
+      LDAP_BASE_DN: ${base_dn}
+      LDAP_READONLY_USER_USERNAME: ${readonly_user_username}
+      LDAP_READONLY_USER_PASSWORD: ${readonly_user_password}
+      PHPLDAPADMIN_SERVER_ADMIN: ${admin_email}
+      PHPLDAPADMIN_HTTPS: ${admin_ui_https}
+      PHPLDAPADMIN_LDAP_CLIENT_TLS: ${client_tls}
     volumes:
       - /home/reid/tmp/env.yaml:/container/environment/01-custom/env.yaml
     # command: --loglevel debug
@@ -40,9 +43,5 @@ services:
       - "80"
       - "443"
     ports:
-      - "8029:80"
-      - "4434:443"
-    environment:
-      - PHPLDAPADMIN_SERVER_ADMIN=michael@faille.io
-      - PHPLDAPADMIN_HTTPS=true
-      - PHPLDAPADMIN_LDAP_CLIENT_TLS=false
+      - "${admin_external_port}:80"
+      - "${admin_external_port_https}:443"
