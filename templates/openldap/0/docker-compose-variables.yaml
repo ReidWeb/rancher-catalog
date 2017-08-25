@@ -1,0 +1,11 @@
+version: '2'
+services:
+  ldap-variables:
+    environment:
+      LDAP_ORGANISATION: "ReidWeb"
+      LDAP_DOMAIN: "reidweb.com"
+      LDAP_ADMIN_PASSWORD: "adm1n"
+      LDAP_READONLY_USER: "true"
+      LDAP_BASE_DN: "dc=reidweb,dc=com"
+      LDAP_READONLY_USER_USERNAME: readonly
+      LDAP_READONLY_USER_PASSWORD: readonly

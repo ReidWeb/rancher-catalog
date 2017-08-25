@@ -1,0 +1,39 @@
+version: '2'
+services:
+  ldap-host:
+    image: "osixia/openldap:1.1.2"
+    domainname: reidweb.com
+    hostname: ldap
+    extends:
+      service: ldap-variables
+      file: docker-compose-variables.yaml
+    volumes:
+      - /srv/openldap/var/lib/ldap:/var/lib/ldap:rw
+      - /srv/openldap/etc/ldap/slapd.d:/etc/ldap/slapd.d:rw
+    expose:
+      - "389"
+    ports:
+      - "389:389"
+  ldap-admin:
+    image: "osixia/phpldapadmin:0.6.8"
+    depends_on:
+      - ldap-host
+    links:
+      - ldap-host
+    extends:
+      service: ldap-variables
+      file:  docker-compose-variables.yaml
+    volumes:
+      - ./data/environment/env.yaml:/container/environment/01-custom/env.yaml
+    # command: --loglevel debug
+
+    expose:
+      - "80"
+      - "443"
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - PHPLDAPADMIN_SERVER_ADMIN=michael@faille.io
+      - PHPLDAPADMIN_HTTPS=true
+      - PHPLDAPADMIN_LDAP_CLIENT_TLS=false
