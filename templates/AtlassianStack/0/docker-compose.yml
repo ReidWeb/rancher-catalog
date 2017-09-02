@@ -40,6 +40,6 @@ services:
       - bitbucket
     volumes:
       - /home/reid/rancher/reidweb-rancher-catalog/templates/AtlassianStack/0/:/src
-    command: ./src/scripts/run_nginx.sh
     environment:
       ROOT_DOMAIN: "${ROOT_DOMAIN}"
+    command: ./src/scripts/run_nginx.sh
