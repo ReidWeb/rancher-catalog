@@ -1,50 +1,43 @@
-version: '3'
-services:
-  jira:
-    image: cptactionhank/atlassian-jira-software:7.4.3
-    restart: always
-    links:
-      - database
-    volumes:
-      - jira-data:/var/atlassian/jira
+jira:
+  image: cptactionhank/atlassian-jira-software:7.4.3
+  restart: always
+  links:
+    - database
+  volumes:
+    - jira-data:/var/atlassian/jira
 
-  confluence:
-    image: atlassian/confluence-server:6.3
-    restart: always
-    links:
-      - database
-    volumes:
-      - confluence-data:/var/atlassian/confluence
+confluence:
+  image: atlassian/confluence-server:6.3
+  restart: always
+  links:
+    - database
+  volumes:
+    - confluence-data:/var/atlassian/confluence
 
-  bitbucket:
-    image: atlassian/bitbucket-server:5.2.0
-    restart: always
-    links:
-      - database
-    volumes:
-      - bitbucket-data:/var/atlassian/application-data/bitbucket
+bitbucket:
+  image: atlassian/bitbucket-server:5.2.0
+  restart: always
+  links:
+    - database
+  volumes:
+    - bitbucket-data:/var/atlassian/application-data/bitbucket
 
-  database:
-    image: postgres:9.4
-    restart: always
-    volumes:
-      - database-data:/var/lib/postgresql/data
-  nginx:
-    image: nginx
-    restart: always
-    ports:
-      - "80:80"
-    links:
-      - jira
-      - confluence
-      - bitbucket
-    volumes:
-    - ./:/src
-    command: ./src/scripts/run_nginx.sh
-    environment:
-    - "${ROOT_DOMAIN}"
-volumes:
-  jira-data:
-  confluence-data:
-  bitbucket-data:
-  database-data:
+database:
+  image: postgres:9.4
+  restart: always
+  volumes:
+    - database-data:/var/lib/postgresql/data
+nginx:
+  image: nginx
+  restart: always
+  ports:
+    - "80:80"
+  links:
+    - jira
+    - confluence
+    - bitbucket
+  volumes:
+  - ./:/src
+  command: ./src/scripts/run_nginx.sh
+  environment:
+  - "${ROOT_DOMAIN}"
