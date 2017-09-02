@@ -5,6 +5,8 @@ services:
     restart: always
     links:
       - database
+      - bitbucket
+      - confluence
     volumes:
       - jira-data:/var/atlassian/jira
 
@@ -13,6 +15,8 @@ services:
     restart: always
     links:
       - database
+      - bitbucket
+      - jira
     volumes:
       - confluence-data:/var/atlassian/confluence
 
@@ -21,6 +25,8 @@ services:
     restart: always
     links:
       - database
+      - confluence
+      - jira
     volumes:
       - bitbucket-data:/var/atlassian/application-data/bitbucket
 
