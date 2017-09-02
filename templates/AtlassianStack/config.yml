@@ -1,0 +1,5 @@
+name: Standalone Prometheus
+description: |
+  Atlassian BitBucket Server, JIRA, and Confluence
+version: 1.0.0
+category: Developer Tools
