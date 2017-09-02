@@ -1,4 +1,4 @@
-name: Standalone Prometheus
+name: Atlassian Stack
 description: |
   Atlassian BitBucket Server, JIRA, and Confluence
 version: 1.0.0
