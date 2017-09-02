@@ -37,7 +37,7 @@ nginx:
     - confluence
     - bitbucket
   volumes:
-  - ./:/src
+  - nginx-scripts:/src
   command: ./src/scripts/run_nginx.sh
   environment:
   - "${ROOT_DOMAIN}"
