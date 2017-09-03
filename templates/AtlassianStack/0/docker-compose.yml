@@ -1,10 +1,32 @@
 version: '2'
 services:
+  crowd:
+    image: blacklabelops/crowd
+    volumes:
+      - crowd-data:/var/atlassian/crowd
+    environment:
+      CROWD_PROXY_NAME:
+      CROWD_PROXY_PORT:
+      CROWD_PROXY_SCHEME:
+      CROWD_URL: "http://localhost:8095/crowd"
+      LOGIN_BASE_URL: "http://localhost:8095"
+      SPLASH_CONTEXT: "ROOT"
+      CROWD_CONTEXT: "crowd"
+      CROWDID_CONTEXT: "openidserver"
+      OPENID_CLIENT_CONTEXT: "openidclient"
+      DEMO_CONTEXT: "demo"
+    labels:
+      com.blacklabelops.description: "Atlassian Crowd"
+      com.blacklabelops.service: "crowd"
+
   jira:
     image: cptactionhank/atlassian-jira-software:7.4.3
     restart: always
     links:
       - database
+      - bitbucket
+      - confluence
+      - crowd
     volumes:
       - jira-data:/var/atlassian/jira
 
@@ -13,6 +35,9 @@ services:
     restart: always
     links:
       - database
+      - bitbucket
+      - jira
+      - crowd
     volumes:
       - confluence-data:/var/atlassian/confluence
 
@@ -21,6 +46,9 @@ services:
     restart: always
     links:
       - database
+      - confluence
+      - jira
+      - crowd
     volumes:
       - bitbucket-data:/var/atlassian/application-data/bitbucket
 
