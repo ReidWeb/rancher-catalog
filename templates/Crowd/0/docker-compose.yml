@@ -1,0 +1,26 @@
+version: '2'
+services:
+  crowd:
+    image: blacklabelops/crowd
+    volumes:
+      - crowd-data:/var/atlassian/crowd
+    environment:
+      CROWD_PROXY_NAME:
+      CROWD_PROXY_PORT:
+      CROWD_PROXY_SCHEME:
+      CROWD_URL: "http://localhost:8095"
+      LOGIN_BASE_URL: "http://localhost:8095"
+      SPLASH_CONTEXT: ""
+      CROWD_CONTEXT: "ROOT"
+      CROWDID_CONTEXT: ""
+      OPENID_CLIENT_CONTEXT: ""
+    links:
+      - database
+    external_links:
+      - openldap/ldap-host:ldap
+
+  database:
+    image: postgres:9.4
+    restart: always
+    volumes:
+      - crowd-db-data:/var/lib/postgresql/data
