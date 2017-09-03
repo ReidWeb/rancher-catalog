@@ -1,0 +1,19 @@
+version: '2'
+services:
+  nginx:
+    image: nginx
+    restart: always
+    ports:
+      - "80:80"
+    links:
+      - jira
+      - confluence
+      - bitbucket
+      - crowd
+    volumes:
+      - ${CONFIG_PATH}:/etc/nginx/nginx.conf
+    external_links:
+    - bitbucket-server/bitbucket:bitbucket
+    - confluence/confluence:confluence
+    - jira-software/jira:jira
+    - crowd/crowd:crowd
