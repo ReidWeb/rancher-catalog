@@ -5,9 +5,9 @@ services:
     volumes:
       - ${DATA_PATH}:/var/atlassian/crowd
     environment:
-      CROWD_PROXY_NAME: ${PROXY_NAME}
-      CROWD_PROXY_PORT: ${PROXY_PORT}
-      CROWD_PROXY_SCHEME: ${PROXY_SCHEME}
+      CROWD_PROXY_NAME:
+      CROWD_PROXY_PORT:
+      CROWD_PROXY_SCHEME:
       CROWD_URL: "http://localhost:8095/crowd"
       LOGIN_BASE_URL: "http://localhost:8095"
       SPLASH_CONTEXT: "ROOT"
