@@ -2,5 +2,5 @@
   name: "Atlassian Confluence by ReidWeb"
   version: "1.0.0"
   description: "Confluence wiki software by Atlassian"
-  uuid: atlas-stack
+  uuid: confluence
   minimum_rancher_version: v1.5.5

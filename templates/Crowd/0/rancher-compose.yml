@@ -2,5 +2,5 @@
   name: "Atlassian Crowd by ReidWeb"
   version: "1.0.0"
   description: "Atlassian Crowd identity service provider"
-  uuid: atlas-stack
+  uuid: crowd
   minimum_rancher_version: v1.5.5
