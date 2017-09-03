@@ -5,7 +5,8 @@ services:
     restart: always
     links:
       - database
-      - crowd
+    external_links:
+      - crowd/crowd:crowd
     volumes:
       - bitbucket-data:/var/atlassian/application-data/bitbucket
 
@@ -13,4 +14,4 @@ services:
     image: postgres:9.4
     restart: always
     volumes:
-      - database-data:/var/lib/postgresql/data
+      - bitbucket-db-data:/var/lib/postgresql/data

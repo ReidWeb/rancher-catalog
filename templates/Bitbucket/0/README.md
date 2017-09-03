@@ -1,3 +1,3 @@
-# Atlassian Stack
+# Atlassian BitBucket Server
 
 ## TODO
