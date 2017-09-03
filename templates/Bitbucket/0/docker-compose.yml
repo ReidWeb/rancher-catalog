@@ -3,6 +3,8 @@ services:
   bitbucket:
     image: atlassian/bitbucket-server:5.2.0
     restart: always
+    ports:
+      - 7999:7999
     links:
       - database
     external_links:
