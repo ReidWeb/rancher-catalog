@@ -8,13 +8,12 @@ services:
       CROWD_PROXY_NAME: ${PROXY_NAME}
       CROWD_PROXY_PORT: ${PROXY_PORT}
       CROWD_PROXY_SCHEME: ${PROXY_SCHEME}
-      CROWD_URL: "http://localhost:8095/crowd"
+      CROWD_URL: "http://localhost:8095"
       LOGIN_BASE_URL: "http://localhost:8095"
-      SPLASH_CONTEXT: "ROOT"
-      CROWD_CONTEXT: "crowd"
-      CROWDID_CONTEXT: "openidserver"
-      OPENID_CLIENT_CONTEXT: "openidclient"
-      DEMO_CONTEXT: "demo"
+      SPLASH_CONTEXT: ""
+      CROWD_CONTEXT: "ROOT"
+      CROWDID_CONTEXT: ""
+      OPENID_CLIENT_CONTEXT: ""
     links:
       - database
     external_links:
