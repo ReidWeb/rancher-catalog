@@ -59,6 +59,7 @@ services:
       - jira
       - confluence
       - bitbucket
+      - crowd
     volumes:
       - /home/reid/rancher/reidweb-rancher-catalog/templates/AtlassianStack/0/:/src
     environment:
