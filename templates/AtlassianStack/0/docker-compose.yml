@@ -15,17 +15,14 @@ services:
       CROWDID_CONTEXT: "openidserver"
       OPENID_CLIENT_CONTEXT: "openidclient"
       DEMO_CONTEXT: "demo"
-    labels:
-      com.blacklabelops.description: "Atlassian Crowd"
-      com.blacklabelops.service: "crowd"
+    links:
+      - database
 
   jira:
     image: cptactionhank/atlassian-jira-software:7.4.3
     restart: always
     links:
       - database
-      - bitbucket
-      - confluence
       - crowd
     volumes:
       - jira-data:/var/atlassian/jira
@@ -35,8 +32,6 @@ services:
     restart: always
     links:
       - database
-      - bitbucket
-      - jira
       - crowd
     volumes:
       - confluence-data:/var/atlassian/confluence
@@ -46,8 +41,6 @@ services:
     restart: always
     links:
       - database
-      - confluence
-      - jira
       - crowd
     volumes:
       - bitbucket-data:/var/atlassian/application-data/bitbucket
