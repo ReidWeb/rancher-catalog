@@ -1,6 +1,6 @@
 .catalog:
   name: "Atlassian Crowd by ReidWeb"
-  version: "1.0.5"
+  version: "1.0.6"
   description: "Atlassian Crowd identity service provider"
   uuid: crowd
   minimum_rancher_version: v1.5.5
@@ -50,7 +50,7 @@
         required: false
         default: ldap
         type: string
-confluence:
+crowd:
   scale: 1
   health_check:
     port: 8095
