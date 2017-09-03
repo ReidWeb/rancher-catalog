@@ -5,7 +5,6 @@ services:
     restart: always
     links:
       - database
-      - crowd
     external_links:
       - crowd/crowd:crowd
     volumes:
