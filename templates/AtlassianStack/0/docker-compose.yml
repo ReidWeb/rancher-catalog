@@ -17,6 +17,8 @@ services:
       DEMO_CONTEXT: "demo"
     links:
       - database
+    external_links:
+    - openldap/ldap-host:ldap
 
   jira:
     image: cptactionhank/atlassian-jira-software:7.4.3
