@@ -1,6 +1,6 @@
 .catalog:
   name: "Atlassian Stack"
-  version: "1.0.5"
+  version: "1.0.6"
   description: "JIRA, Bitbucket Server and Confluence"
   uuid: atlas-stack
   minimum_rancher_version: v1.5.5
