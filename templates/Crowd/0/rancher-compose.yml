@@ -10,7 +10,7 @@
         description: Local path to data directory for Crowd or ref name
         required: true
         type: string
-        default: "/home/atlassian/application-data/crowd"
+        default: "crowd-data"
       - variable: DB_DATA_PATH
         label: Local path to data directory for Crowd DB or ref name
         description: Local path to data directory for Crowd DB or ref name
