@@ -83,4 +83,20 @@ http {
             proxy_set_header        Host            ${DOLLAR}host;
         }
     }
+
+    server {
+            listen       80;
+            server_name  crowd.${ROOT_DOMAIN} www.crowd.${ROOT_DOMAIN};
+
+            location / {
+                proxy_pass              http://crowd:8095;
+
+                proxy_set_header        X-Forwarded-Host ${DOLLAR}host;
+                proxy_set_header        X-Forwarded-Server ${DOLLAR}host;
+                proxy_set_header        X-Forwarded-For ${DOLLAR}remote_addr;
+                proxy_set_header        X-Real-IP ${DOLLAR}remote_addr;
+
+                proxy_set_header        Host            ${DOLLAR}host;
+            }
+        }
 }
