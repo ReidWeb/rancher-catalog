@@ -1,6 +1,6 @@
 .catalog:
   name: "Atlassian Crowd by ReidWeb"
-  version: "1.0.3"
+  version: "1.0.4"
   description: "Atlassian Crowd identity service provider"
   uuid: crowd
   minimum_rancher_version: v1.5.5
@@ -22,7 +22,7 @@
         description: Name for proxy setup in crowd, leave blank if not doing so
         required: false
         type: string
-        default: "crowd.reidweb.com"
+        default: "crowd.np.docker.reidweb.com"
       - variable: PROXY_PORT
         label: Port for proxy setup in crowd, leave blank if not doing so
         description: Name for proxy setup in crowd, leave blank if not doing so
