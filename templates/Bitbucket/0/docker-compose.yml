@@ -1,0 +1,15 @@
+version: '2'
+services:
+  bitbucket:
+    image: atlassian/bitbucket-server:5.2.0
+    restart: always
+    links:
+      - database
+      - crowd
+    volumes:
+      - bitbucket-data:/home/atlassian/application-data/bitbucket
+  database:
+    image: postgres:9.4
+    restart: always
+    volumes:
+      - database-data:/var/lib/postgresql/data

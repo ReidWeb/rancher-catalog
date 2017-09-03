@@ -1,0 +1,6 @@
+.catalog:
+  name: "Atlassian BitBucket by ReidWeb"
+  version: "1.0.0"
+  description: "Bitbucket Server"
+  uuid: bitbucket-server
+  minimum_rancher_version: v1.5.5
