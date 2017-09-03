@@ -1,0 +1,6 @@
+.catalog:
+  name: "Atlassian JIRA Software by ReidWeb"
+  version: "1.0.0"
+  description: "Atlassian JIRA Software work item tracking tool"
+  uuid: jira-software
+  minimum_rancher_version: v1.5.5
