@@ -5,11 +5,6 @@ services:
     restart: always
     ports:
       - "80:80"
-    links:
-      - jira
-      - confluence
-      - bitbucket
-      - crowd
     volumes:
       - ${CONFIG_PATH}:/etc/nginx/nginx.conf
     external_links:

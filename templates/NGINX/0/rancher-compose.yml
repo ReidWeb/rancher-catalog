@@ -5,9 +5,9 @@
   uuid: nginx
   minimum_rancher_version: v1.5.5
   questions:
-  - variable: "CONFIG_PATH"
-    label: "Path on server node to nginx config to load"
-    description: "Path on server node to nginx config to load"
-    default: "/home/reid/rancher/conf/nginx/nginx.conf"
-    required: c
-    type: "string"
+    - variable: "CONFIG_PATH"
+      label: "Path on server node to nginx config to load"
+      description: "Path on server node to nginx config to load"
+      default: "/home/reid/rancher/conf/nginx/nginx.conf"
+      required: true
+      type: "string"
