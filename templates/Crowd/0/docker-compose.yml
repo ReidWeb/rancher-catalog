@@ -3,7 +3,7 @@ services:
   crowd:
     image: blacklabelops/crowd
     volumes:
-      - crowd-data-new:/var/atlassian/crowd
+      - ${DATA_PATH}:/var/atlassian/crowd
     environment:
       CROWD_PROXY_NAME: ${PROXY_NAME}
       CROWD_PROXY_PORT: ${PROXY_PORT}
