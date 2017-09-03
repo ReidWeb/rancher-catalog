@@ -3,11 +3,11 @@ services:
   crowd:
     image: blacklabelops/crowd
     volumes:
-      - crowd-new-data:/var/atlassian/crowd
+      - ${DATA_PATH}:/var/atlassian/crowd
     environment:
-      CROWD_PROXY_NAME:
-      CROWD_PROXY_PORT:
-      CROWD_PROXY_SCHEME:
+      CROWD_PROXY_NAME: ${PROXY_NAME}
+      CROWD_PROXY_PORT: ${PROXY_PORT}
+      CROWD_PROXY_SCHEME: ${PROXY_SCHEME}
       CROWD_URL: "http://localhost:8095"
       LOGIN_BASE_URL: "http://localhost:8095"
       SPLASH_CONTEXT: ""
@@ -17,10 +17,10 @@ services:
     links:
       - database
     external_links:
-      - openldap/ldap-host:ldap
+      - ${EXTERNAL_LINK_SERVICE}:${EXTERNAL_LINK_NAME}
 
   database:
     image: postgres:9.4
     restart: always
     volumes:
-      - crowd-db-data:/var/lib/postgresql/data
+      - ${DB_DATA_PATH}:/var/lib/postgresql/data
