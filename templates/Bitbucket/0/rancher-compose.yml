@@ -4,3 +4,71 @@
   description: "Enterprise Git repository management"
   uuid: bitbucket-server
   minimum_rancher_version: v1.5.5
+  questions:
+    - variable: DATA_PATH
+      label: Local path to data directory for BitBucket Server or ref name
+      description: Local path to data directory for BitBucket Server or ref name
+      required: true
+      type: string
+      default: "/home/atlassian/application-data/bitbucket"
+    - variable: DB_DATA_PATH
+      label: Local path to data directory for BitBucket Server DB or ref name
+      description: Local path to data directory for BitBucket Server DB or ref name
+      required: true
+      type: string
+      default: "/home/atlassian/database-data/bitbucket"
+    - variable: SERVER_SECURE
+      description: Whether running behind a reverse proxy with SSL enabled
+      label: Whether running behind a reverse proxy with SSL enabled
+      required: true
+      type: boolean
+      default: false
+    - variable: PROXY_NAME
+      label: Name for proxy setup in BitBucket Server, leave blank if not doing so
+      description: Name for proxy setup in BitBucket Server, leave blank if not doing so
+      required: false
+      type: string
+      default: "bitbucket.np.docker.reidweb.com"
+    - variable: PROXY_PORT
+      label: Port for proxy setup in BitBucket Server, leave blank if not doing so
+      description: Name for proxy setup in BitBucket Server, leave blank if not doing so
+      required: false
+      type: enum
+      options:
+        - ""
+        - "80"
+        - "443"
+    - variable: PROXY_SCHEME
+      label: Scheme for proxy setup in BitBucket Server, leave blank if not doing so
+      description: Scheme for proxy setup in BitBucket Server, leave blank if not doing so
+      required: false
+      type: enum
+      options:
+        - ""
+        - "http"
+        - "https"
+    - variable: CROWD_SERVICE
+      label: A crowd service to connect to.
+      description: Select an external service to link to
+      required: false
+      type: service
+BitBucket Server:
+  scale: 1
+  health_check:
+    port: 7990
+    interval: 2000
+    initializing_timeout: 60000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 2
+    response_timeout: 2000
+database:
+  scale: 1
+  health_check:
+    port: 5432
+    interval: 2000
+    initializing_timeout: 60000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 2
+    response_timeout: 2000
