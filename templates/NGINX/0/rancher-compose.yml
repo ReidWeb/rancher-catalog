@@ -14,7 +14,7 @@
     - variable: "CONFD_PATH"
       label: "Path on server node to nginx site configs to load"
       description: "Path on server node to nginx site configs to load"
-      default: "/home/reid/rancher/conf/nginx/sites"
+      default: "/home/reid/rancher/conf/nginx/sites/enabled"
       required: true
       type: "string"
     - variable: "CERT_PATH"
