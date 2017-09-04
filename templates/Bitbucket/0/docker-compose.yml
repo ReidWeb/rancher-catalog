@@ -1,7 +1,6 @@
 version: '2'
 services:
   bitbucket:
-    name: bitbucket
     image: atlassian/bitbucket-server:5.2.0
     volumes:
       - ${DATA_PATH}:/var/atlassian/application-data/bitbucket
