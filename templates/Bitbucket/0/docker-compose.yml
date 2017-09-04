@@ -3,7 +3,7 @@ services:
   bitbucket:
     image: atlassian/bitbucket-server:5.2.0
     volumes:
-      - {$DATA_PATH}:/var/atlassian/application-data/bitbucket
+      - ${DATA_PATH}:/var/atlassian/application-data/bitbucket
     restart: always
     ports:
       - 7999:7999
