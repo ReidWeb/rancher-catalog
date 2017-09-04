@@ -1,5 +1,5 @@
-name: BitBucket by ReidWeb
+name: BitBucket Server by ReidWeb
 description: |
-  Atlassian BitBucket Server, self hosted git version control server.
+  Enterprise Git repository management
 version: 1.0.0
 category: Developer Tools

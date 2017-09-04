@@ -1,6 +1,6 @@
 .catalog:
-  name: "Atlassian Confluence by ReidWeb"
+  name: "Confluence by ReidWeb"
   version: "1.0.0"
-  description: "Confluence wiki software by Atlassian"
+  description: "Enterprise wiki collaboration software"
   uuid: confluence
   minimum_rancher_version: v1.5.5
