@@ -31,6 +31,7 @@
         options:
           - ""
           - "80"
+          - "443"
       - variable: PROXY_SCHEME
         label: Scheme for proxy setup in crowd, leave blank if not doing so
         description: Scheme for proxy setup in crowd, leave blank if not doing so
@@ -39,6 +40,7 @@
         options:
           - ""
           - "http"
+          - "https"
       - variable: EXTERNAL_LINK_SERVICE
         label: An external service to link to, such as an OpenLDAP service instance.
         description: Select an external service to link to
