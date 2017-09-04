@@ -2,7 +2,7 @@
   name: "BitBucket Server by ReidWeb"
   version: "1.0.0"
   description: "Enterprise Git repository management"
-  uuid: bitbucket-server
+  uuid: bitbucketserver
   minimum_rancher_version: v1.5.5
   questions:
     - variable: DATA_PATH
