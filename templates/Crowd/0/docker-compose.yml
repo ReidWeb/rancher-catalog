@@ -4,6 +4,7 @@ services:
     image: blacklabelops/crowd:3.0.1
     volumes:
       - ${DATA_PATH}:/var/atlassian/crowd
+    restart: always
     environment:
       CROWD_PROXY_NAME: ${PROXY_NAME}
       CROWD_PROXY_PORT: ${PROXY_PORT}
