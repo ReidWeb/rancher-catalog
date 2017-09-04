@@ -14,6 +14,6 @@
     - variable: "CERT_PATH"
       label: "Path on server node to ssl cert directory to load"
       description: "Path on server node to ssl cert directory to load"
-      default: "/etc/letsencrypt/live"
+      default: "/etc/letsencrypt"
       required: true
       type: "string"
