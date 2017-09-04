@@ -1,6 +1,6 @@
 .catalog:
   name: "BitBucket Server by ReidWeb"
-  version: "1.0.0"
+  version: "5.2.0"
   description: "Enterprise Git repository management"
   uuid: bitbucket
   minimum_rancher_version: v1.5.5
