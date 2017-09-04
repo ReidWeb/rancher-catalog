@@ -52,7 +52,7 @@
       description: Select an external service to link to
       required: false
       type: service
-BitBucket Server:
+bitbucket:
   scale: 1
   health_check:
     port: 7990
