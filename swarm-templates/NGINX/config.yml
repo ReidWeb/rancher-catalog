@@ -1,0 +1,5 @@
+name: NGINX
+description: |
+  NGINX Web server and reverse proxy
+version: 1.0.1
+category: Web

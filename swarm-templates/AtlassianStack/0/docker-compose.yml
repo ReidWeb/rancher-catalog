@@ -1,0 +1,69 @@
+version: '2'
+services:
+  crowd:
+    image: blacklabelops/crowd
+    volumes:
+      - crowd-data:/var/atlassian/crowd
+    environment:
+      CROWD_PROXY_NAME:
+      CROWD_PROXY_PORT:
+      CROWD_PROXY_SCHEME:
+      CROWD_URL: "http://localhost:8095/crowd"
+      LOGIN_BASE_URL: "http://localhost:8095"
+      SPLASH_CONTEXT: "ROOT"
+      CROWD_CONTEXT: "crowd"
+      CROWDID_CONTEXT: "openidserver"
+      OPENID_CLIENT_CONTEXT: "openidclient"
+      DEMO_CONTEXT: "demo"
+    links:
+      - database
+    external_links:
+    - openldap/ldap-host:ldap
+
+  jira:
+    image: cptactionhank/atlassian-jira-software:7.4.3
+    restart: always
+    links:
+      - database
+      - crowd
+    volumes:
+      - jira-data:/var/atlassian/jira
+
+  confluence:
+    image: atlassian/confluence-server:6.3
+    restart: always
+    links:
+      - database
+      - crowd
+    volumes:
+      - confluence-data:/var/atlassian/confluence
+
+  bitbucket:
+    image: atlassian/bitbucket-server:5.2.0
+    restart: always
+    links:
+      - database
+      - crowd
+    volumes:
+      - bitbucket-data:/var/atlassian/application-data/bitbucket
+
+  database:
+    image: postgres:9.4
+    restart: always
+    volumes:
+      - database-data:/var/lib/postgresql/data
+  nginx:
+    image: nginx
+    restart: always
+    ports:
+      - "80:80"
+    links:
+      - jira
+      - confluence
+      - bitbucket
+      - crowd
+    volumes:
+      - /home/reid/rancher/reidweb-rancher-catalog/templates/AtlassianStack/0/:/src
+    environment:
+      ROOT_DOMAIN: "${ROOT_DOMAIN}"
+    command: ./src/scripts/run_nginx.sh

@@ -1,0 +1,22 @@
+.catalog:
+  name: "Prometheus & Grafana"
+  version: "3.1.0"
+  description: "Prometheus Monitoring Solution"
+  uuid: prometheus-2
+  minimum_rancher_version: v1.5.5
+  questions:
+  - variable: "RANCHER_SERVER"
+    label: "Rancher Server"
+    description: "IP Address of the rancher server, no HTTP or slashes. This is only required for users that have enabled metrics to be exported by Rancher"
+    default: "0.0.0.0"
+    required: false
+    type: "string"
+
+prometheus:
+  scale: 1
+
+grafana:
+  scale: 1
+
+prometheus-rancher-exporter:
+  scale: 1

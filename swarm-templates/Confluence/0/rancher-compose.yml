@@ -1,0 +1,6 @@
+.catalog:
+  name: "Confluence by ReidWeb"
+  version: "1.0.0"
+  description: "Enterprise wiki collaboration software"
+  uuid: confluence
+  minimum_rancher_version: v1.5.5
