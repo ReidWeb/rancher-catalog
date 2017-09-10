@@ -1,3 +1,0 @@
-# Atlassian Stack
-
-## TODO

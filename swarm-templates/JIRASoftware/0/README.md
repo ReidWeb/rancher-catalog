@@ -1,3 +1,0 @@
-# Atlassian JIRA Software
-
-## TODO

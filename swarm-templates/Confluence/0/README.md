@@ -1,3 +1,0 @@
-# Atlassian Confluence
-
-## TODO
