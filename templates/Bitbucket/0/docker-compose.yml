@@ -22,7 +22,7 @@ services:
     labels:
       traefik.enable: ${SHOULD_PROXY}
       traefik.domain: ${PROXY_NAME}
-      traefik.port: ${PROXY_PORT}
+      traefik.port: 7990
       traefik.protocol: https
       traefik.acme: true
   database:
