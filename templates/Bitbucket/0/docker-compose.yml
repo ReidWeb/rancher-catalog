@@ -23,7 +23,7 @@ services:
       traefik.enable: stack
       traefik.domain: ${ROOT_DOMAIN_NAME}
       traefik.port: 7990
-      traefik.protocol: https
+      traefik.protocol: http
       traefik.acme: true
   database:
     image: postgres:9.4
