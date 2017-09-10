@@ -20,7 +20,7 @@ services:
     external_links:
       - ${CROWD_SERVICE}:crowd
     labels:
-      traefik.enable: ${SHOULD_PROXY}
+      traefik.enable: stack
       traefik.domain: ${PROXY_NAME}
       traefik.port: 7990
       traefik.protocol: https
