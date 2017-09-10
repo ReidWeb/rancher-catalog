@@ -3,8 +3,8 @@ services:
   traefik:
     ports:
     - ${admin_port}:8000/tcp
-    - ${http_port}:${http_port}/tcp
-    - ${https_port}:${https_port}/tcp
+    - ${http_port}:8080/tcp
+    - ${https_port}:8443/tcp
     labels:
       io.rancher.scheduler.global: 'true'
       io.rancher.scheduler.affinity:host_label: ${host_label}
@@ -17,8 +17,8 @@ services:
     image: reidweb/alpine-traefik:latest
     environment:
     - CONF_INTERVAL=${refresh_interval}
-    - TRAEFIK_HTTP_PORT=${http_port}
-    - TRAEFIK_HTTPS_PORT=${https_port}
+    - TRAEFIK_HTTP_PORT=8080
+    - TRAEFIK_HTTPS_PORT=8443
     - TRAEFIK_HTTPS_ENABLE=${https_enable}
   {{- if eq .Values.acme_enable "true"}}
     - TRAEFIK_ACME_ENABLE=${acme_enable}
