@@ -22,7 +22,7 @@ services:
     labels:
       traefik.enable: stack
       traefik.domain: ${BASE_DOMAIN_NAME}
-      traefik.alias ${SUB_DOMAIN}
+      traefik.alias: ${SUB_DOMAIN}
       traefik.port: 7990
       traefik.protocol: http
       traefik.acme: true
