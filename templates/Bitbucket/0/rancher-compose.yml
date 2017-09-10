@@ -35,6 +35,12 @@
       required: false
       type: string
       default: "bitbucket.np.docker.reidweb.com"
+    - variable: ROOT_DOMAIN_NAME
+      label: Base domain to use in traefik
+      description: Base domain to use in traefik
+      required: false
+      type: string
+      default: "np.docker.reidweb.com"
     - variable: PROXY_PORT
       label: Port for proxy setup in BitBucket Server, leave blank if not doing so
       description: Name for proxy setup in BitBucket Server, leave blank if not doing so
