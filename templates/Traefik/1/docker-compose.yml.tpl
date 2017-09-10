@@ -14,7 +14,7 @@ services:
           ,traefik-acme
         {{- end}}
       io.rancher.container.hostname_override: container_name
-    image: reidweb/alpine-traefik:v1.0.2
+    image: reidweb/alpine-traefik:v1.0.3
     environment:
     - CONF_INTERVAL=${refresh_interval}
     - TRAEFIK_HTTP_PORT=8080
