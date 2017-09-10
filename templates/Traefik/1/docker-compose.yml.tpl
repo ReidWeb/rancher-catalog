@@ -2,8 +2,8 @@ version: '2'
 services:
   traefik:
     ports:
-    - ${admin_port}:80/tcp
-    - ${http_port}:8080/tcp
+    - ${admin_port}:8000/tcp
+    - ${http_port}:80/tcp
     - ${https_port}:443/tcp
     labels:
       io.rancher.scheduler.global: 'true'
