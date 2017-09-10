@@ -23,6 +23,12 @@
         required: false
         type: string
         default: "crowd.np.docker.reidweb.com"
+      - variable: BASE_DOMAIN_NAME
+        label: Base domain name of which this service will be a subdomain
+        description: Base domain name of which this service will be a subdomain. Used by traefik
+        required: false
+        type: string
+        default: "np.docker.reidweb.com"
       - variable: PROXY_PORT
         label: Port for proxy setup in crowd, leave blank if not doing so
         description: Name for proxy setup in crowd, leave blank if not doing so
