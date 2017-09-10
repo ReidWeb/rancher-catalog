@@ -11,7 +11,7 @@ services:
       SERVER_SECURE: ${SERVER_SECURE}
       SERVER_SCHEME: ${PROXY_SCHEME}
       SERVER_PROXY_PORT: ${PROXY_PORT}
-      SERVER_PROXY_NAME: ${PROXY_NAME}
+      SERVER_PROXY_NAME: ${SUB_DOMAIN} + ${BASE_DOMAIN_NAME}
       ELASTICSEARCH_ENABLED: true
     links:
       - database
@@ -21,7 +21,7 @@ services:
       - ${CROWD_SERVICE}:crowd
     labels:
       traefik.enable: stack
-      traefik.domain: ${ROOT_DOMAIN_NAME}
+      traefik.domain: ${BASE_DOMAIN_NAME}
       traefik.port: 7990
       traefik.protocol: http
       traefik.acme: true

@@ -29,18 +29,18 @@
       required: true
       type: boolean
       default: false
-    - variable: PROXY_NAME
-      label: Name for proxy setup in BitBucket Server, leave blank if not doing so
-      description: Name for proxy setup in BitBucket Server, leave blank if not doing so
-      required: false
-      type: string
-      default: "bitbucket.np.docker.reidweb.com"
-    - variable: ROOT_DOMAIN_NAME
-      label: Base domain to use in traefik
-      description: Base domain to use in traefik
+    - variable: BASE_DOMAIN_NAME
+      label: Base domain name of which this service will be a subdomain
+      description: Base domain name of which this service will be a subdomain. Used by traefik
       required: false
       type: string
       default: "np.docker.reidweb.com"
+    - variable: SUB_DOMAIN
+      label: Sub-domain to run on from base domain
+      description: Name for proxy setup in BitBucket Server, leave blank if not doing so
+      required: false
+      type: string
+      default: "source"
     - variable: PROXY_PORT
       label: Port for proxy setup in BitBucket Server, leave blank if not doing so
       description: Name for proxy setup in BitBucket Server, leave blank if not doing so
