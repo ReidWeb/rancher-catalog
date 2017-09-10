@@ -14,7 +14,7 @@ services:
           ,traefik-acme
         {{- end}}
       io.rancher.container.hostname_override: container_name
-    image: reidweb/alpine-traefik:latest
+    image: reidweb/alpine-traefik:v1.0.0
     environment:
     - CONF_INTERVAL=${refresh_interval}
     - TRAEFIK_HTTP_PORT=8080
@@ -38,7 +38,7 @@ services:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.start_once: 'true'
-    image: reidweb/rancher-traefik:latest
+    image: reidweb/rancher-traefik:v1.0.0
     network_mode: none
     volumes:
       - tools-volume:/opt/tools
