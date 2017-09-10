@@ -19,7 +19,19 @@ services:
       - database
     external_links:
       - ${CROWD_SERVICE}:crowd
-
+    labels:
+      - traefik.enable: ${SHOULD_PROXY}
+      - traefik.domain: ${PROXY_NAME}
+      - traefik.port: ${PROXY_PORT}
+    {{- if eq .Values.SERVER_SECURE "true"}}
+      - traefik.protocol: https
+      - traefik.acme: true
+    {{- end}}
+    {{- if eq .Values.SERVER_SECURE "false"}}
+      - traefik.protocol: http
+      - traefik.acme: false
+    {{- end}}
+      - traefik.sticky: true
   database:
     image: postgres:9.4
     restart: always

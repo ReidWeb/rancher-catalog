@@ -17,6 +17,12 @@
       required: true
       type: string
       default: "/home/atlassian/database-data/bitbucket"
+    - variable: SHOULD_PROXY
+      description: Whether to use traefik
+      label: Whether to use traefik
+      required: true
+      type: boolean
+      default: false
     - variable: SERVER_SECURE
       description: Whether running behind a reverse proxy with SSL enabled
       label: Whether running behind a reverse proxy with SSL enabled
