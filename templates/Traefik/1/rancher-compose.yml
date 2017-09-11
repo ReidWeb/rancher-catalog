@@ -114,20 +114,20 @@ catalog:
       required: true
       type: string
     - variable: "WEB_USER_PWD"
-      description: "Web UI basic auth password"
-      label: "Web UI basic auth password"
+      description: "Web UI basic auth password encoded"
+      label: "Web UI basic auth password encoded"
       required: true
-      type: password
+      type: string
 services:
   traefik:
     retain_ip: true
-    health_check:
-      port: 8000
-      interval: 5000
-      unhealthy_threshold: 3
-      request_line: 'GET /dashboard/# HTTP/1.0'
-      healthy_threshold: 2
-      response_timeout: 5000
+    # health_check:
+    #   port: 80
+    #   interval: 5000
+    #   unhealthy_threshold: 3
+    #   request_line: 'GET /dashboard/# HTTP/1.0'
+    #   healthy_threshold: 2
+    #   response_timeout: 5000
     metadata:
       traefik:
         ssl_key: |
