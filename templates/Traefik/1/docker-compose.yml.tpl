@@ -38,7 +38,7 @@ services:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.start_once: 'true'
-    image: reidweb/rancher-traefik:v1.0.1
+    image: reidweb/rancher-traefik:v1.0.2
     network_mode: none
     volumes:
       - tools-volume:/opt/tools
