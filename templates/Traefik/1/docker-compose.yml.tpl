@@ -1,7 +1,7 @@
 version: '2'
 services:
   traefik:
-    image: reidweb/alpine-traefik:v1.4.0-rc2
+    image: reidweb/alpine-traefik:v1.4.0-rc2-1
     ports:
     - ${admin_port}:8000/tcp
     - ${http_port}:80/tcp
