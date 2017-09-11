@@ -108,6 +108,16 @@ catalog:
         - rancher-nfs
         - rancher-efs
         - rancher-ebs
+    - variable: "WEB_USER"
+      description: "Web UI basic auth user name"
+      label: "Web UI basic auth user name"
+      required: true
+      type: string
+    - variable: "WEB_USER_PWD"
+      description: "Web UI basic auth password"
+      label: "Web UI basic auth password"
+      required: true
+      type: password
 services:
   traefik:
     retain_ip: true
