@@ -1,6 +1,7 @@
 version: '2'
 services:
   traefik:
+    image: reidweb/alpine-traefik:v1.4.0-rc2
     ports:
     - ${admin_port}:8000/tcp
     - ${http_port}:80/tcp
@@ -14,7 +15,6 @@ services:
           ,traefik-acme
         {{- end}}
       io.rancher.container.hostname_override: container_name
-    image: reidweb/alpine-traefik:v1.0.4
     environment:
     - CONF_INTERVAL=${refresh_interval}
     - TRAEFIK_HTTP_PORT=80
@@ -33,17 +33,18 @@ services:
     - traefik-acme
   {{- end}}
   traefik-conf:
+    image: reidweb/rancher-traefik:v1.0.0
     labels:
       io.rancher.scheduler.global: 'true'
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.start_once: 'true'
-    image: reidweb/rancher-traefik:v1.0.0
     network_mode: none
     volumes:
       - tools-volume:/opt/tools
   {{- if eq .Values.acme_enable "true"}}
   traefik-acme:
+    image: rawmind/alpine-volume:0.0.2-1
     network_mode: none
     labels:
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
@@ -55,7 +56,6 @@ services:
       - SERVICE_VOLUME=/opt/traefik/acme
     volumes:
       - ${VOLUME_NAME}:/opt/traefik/acme
-    image: rawmind/alpine-volume:0.0.2-1
   {{- end}}
 volumes:
   tools-volume:
