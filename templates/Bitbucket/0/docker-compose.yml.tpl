@@ -30,6 +30,7 @@ services:
       traefik.acme: true
       rap.host: source.np.docker.reidweb.com
       rap.port: 7990
+      rap.le_host: source.np.docker.reidweb.com
   database:
     image: postgres:9.4
     restart: always
