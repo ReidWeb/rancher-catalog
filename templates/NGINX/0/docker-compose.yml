@@ -13,8 +13,8 @@ services:
       - /usr/share/nginx/html:/usr/share/nginx/html 
       - /etc/nginx/certs:/etc/nginx/certs:ro
     labels:
-      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
-      io.rancher.sidekicks: "letsencrypt-companion"
+      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
+      - "io.rancher.sidekicks=docker-gen,letsencrypt-companion"
   docker-gen:
     image: jwilder/docker-gen
     container_name: nginx-gen
@@ -40,7 +40,7 @@ services:
       - docker-gen -notify-sighup nginx -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
   letsencrypt-companion:
     image: jrcs/letsencrypt-nginx-proxy-companion
-    container_name: nginx-letsencrypt
+    container_name: letsencrypt-companion
     restart: unless-stopped
     volumes_from:
       - nginx
