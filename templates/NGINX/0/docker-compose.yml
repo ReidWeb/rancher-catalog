@@ -21,7 +21,7 @@ services:
       - /path/to/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
-      - ENABLE_IPV6: true
+      - ENABLE_IPV6=true
     depends_on:
       - nginx
     labels:
