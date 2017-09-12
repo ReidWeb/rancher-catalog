@@ -19,6 +19,7 @@ services:
     restart: unless-stopped 
     volumes:
       - /etc/nginx/conf.d:/etc/nginx/conf.d
+      - /home/reid/rancher/docker-gen/run.sh/:/src/run.sh:ro
       - /etc/nginx/vhost.d:/etc/nginx/vhost.d
       - /etc/nginx/html:/usr/share/nginx/html
       - /etc/nginx/certs:/etc/nginx/certs:ro
@@ -33,7 +34,7 @@ services:
     labels:
       com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen: "true"
     entrypoint:
-      - "/usr/local/bin/docker-gen -notify-sighup `docker ps | grep nginx: | cut -d ' ' -f 1` -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf"
+      - "/src/run.sh"
   letsencrypt-companion:
     image: jrcs/letsencrypt-nginx-proxy-companion
     restart: unless-stopped
