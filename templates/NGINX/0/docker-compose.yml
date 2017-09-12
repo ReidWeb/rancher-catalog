@@ -32,8 +32,8 @@ services:
       - nginx
     labels:
       com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen: "true"
-    command:
-      - "echo 'Hello world!'"
+    entrypoint:
+      - "/usr/local/bin/docker-gendocker-gen -notify-sighup `docker ps | grep nginx: | cut -d ' ' -f 1` -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf"
   letsencrypt-companion:
     image: jrcs/letsencrypt-nginx-proxy-companion
     restart: unless-stopped
