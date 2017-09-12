@@ -12,8 +12,8 @@ services:
       - /usr/share/nginx/html 
       - /path/to/certs:/etc/nginx/certs:ro
     labels:
-      - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
-      - io.rancher.sidekicks: docker-gen, letsencrypt-companion
+      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
+      io.rancher.sidekicks: docker-gen, letsencrypt-companion
   docker-gen:
     image: jwilder/docker-gen
     volumes_from:
@@ -26,7 +26,7 @@ services:
     depends_on:
       - nginx
     labels:
-      - com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen
+      com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen
   letsencrypt-companion:
     image: jrcs/letsencrypt-nginx-proxy-companion
     volumes_from:
