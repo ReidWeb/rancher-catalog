@@ -34,9 +34,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /path/to/certs:/etc/nginx/certs:rw
   whoami:
-  image: jwilder/whoami
-  environment:
-    - VIRTUAL_HOST=whoami.np.docker.reidweb.com
-    - LETSENCRYPT_HOST=whoami.np.docker.reidweb.com
-    - LETSENCRYPT_EMAIL=ssl@reidweb.com
+    image: jwilder/whoami
+    environment:
+      - VIRTUAL_HOST=whoami.np.docker.reidweb.com
+      - LETSENCRYPT_HOST=whoami.np.docker.reidweb.com
+      - LETSENCRYPT_EMAIL=ssl@reidweb.com
   
