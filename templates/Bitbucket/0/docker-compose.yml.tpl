@@ -38,3 +38,8 @@ services:
     restart: always
     volumes:
       - ${DB_DATA_PATH}:/var/lib/postgresql/data
+
+networks:
+  proxy-tier:
+    external:
+      name: nginx-proxy
