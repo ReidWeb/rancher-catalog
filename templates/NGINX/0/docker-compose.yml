@@ -1,7 +1,6 @@
 version: '2'
 services:
   nginx:
-    name: nginx
     image: nginx:latest
     ports:
       - "80:80"
