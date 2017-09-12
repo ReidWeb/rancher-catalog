@@ -7,9 +7,9 @@ services:
       - "443:443"
     restart: always
     volumes:
-      - /etc/nginx/conf.d
-      - /etc/nginx/vhost.d
-      - /usr/share/nginx/html 
+      - /etc/nginx/conf.d:/etc/nginx/conf.d
+      - /etc/nginx/vhost.d:/etc/nginx/vhost.d
+      - /usr/share/nginx/html:/usr/share/nginx/html 
       - /etc/docker-nginx/certs:/etc/nginx/certs
     labels:
       - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=''
