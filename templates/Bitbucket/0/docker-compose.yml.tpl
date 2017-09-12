@@ -11,7 +11,7 @@ services:
       SERVER_SECURE: ${SERVER_SECURE}
       SERVER_SCHEME: ${PROXY_SCHEME}
       SERVER_PROXY_PORT: ${PROXY_PORT}
-      SERVER_PROXY_NAME: ${SUB_DOMAIN}.${BASE_DOMAIN_NAME}
+      SERVER_PROXY_NAME: ${DOMAIN_NAME}
       ELASTICSEARCH_ENABLED: true
     links:
       - database
@@ -22,15 +22,9 @@ services:
     networks:
       - proxy-tier
     labels:
-      traefik.enable: stack
-      traefik.domain: ${BASE_DOMAIN_NAME}
-      traefik.alias: ${SUB_DOMAIN}
-      traefik.port: 7990
-      traefik.protocol: http
-      traefik.acme: true
-      rap.host: source.np.docker.reidweb.com
+      rap.host: ${DOMAIN_NAME}
       rap.port: 7990
-      rap.le_host: source.np.docker.reidweb.com
+      rap.le_host: ${DOMAIN_NAME}
   database:
     image: postgres:9.4
     restart: always

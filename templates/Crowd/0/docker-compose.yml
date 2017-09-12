@@ -22,11 +22,9 @@ services:
     external_links:
       - ${EXTERNAL_LINK_SERVICE}:${EXTERNAL_LINK_NAME}
     labels:
-      traefik.enable: stack
-      traefik.domain: ${BASE_DOMAIN_NAME}
-      traefik.port: 8095
-      traefik.protocol: http
-      traefik.acme: true
+      rap.host: ${DOMAIN_NAME}
+      rap.port: 7990
+      rap.le_host: ${DOMAIN_NAME}
 
   database:
     image: postgres:9.4

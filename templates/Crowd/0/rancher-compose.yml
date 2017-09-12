@@ -23,9 +23,9 @@
         required: false
         type: string
         default: "crowd.np.docker.reidweb.com"
-      - variable: BASE_DOMAIN_NAME
-        label: Base domain name of which this service will be a subdomain
-        description: Base domain name of which this service will be a subdomain. Used by traefik
+      - variable: DOMAIN_NAME
+        label: domain name of which this service will be a subdomain
+        description: domain name of which this service will be a subdomain. Used by traefik
         required: false
         type: string
         default: "np.docker.reidweb.com"
