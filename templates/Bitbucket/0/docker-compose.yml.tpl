@@ -13,11 +13,6 @@ services:
       SERVER_PROXY_PORT: ${PROXY_PORT}
       SERVER_PROXY_NAME: ${SUB_DOMAIN}.${BASE_DOMAIN_NAME}
       ELASTICSEARCH_ENABLED: true
-      VIRTUAL_HOST: ${SUB_DOMAIN}.${BASE_DOMAIN_NAME}
-      LETSENCRYPT_HOST: ${SUB_DOMAIN}.${BASE_DOMAIN_NAME}
-      VIRTUAL_PORT: 7990
-      LETSENCRYPT_EMAIL: ssl@reidweb.com
-      VIRTUAL_NETWORK: nginx-proxy
     links:
       - database
     depends_on:
@@ -33,6 +28,8 @@ services:
       traefik.port: 7990
       traefik.protocol: http
       traefik.acme: true
+      rap.host: source.np.docker.reidweb.com
+      rap.port: 7990
   database:
     image: postgres:9.4
     restart: always
