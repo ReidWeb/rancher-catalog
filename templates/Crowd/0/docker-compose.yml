@@ -22,9 +22,9 @@ services:
     external_links:
       - ${EXTERNAL_LINK_SERVICE}:${EXTERNAL_LINK_NAME}
     labels:
-      rap.host: ${DOMAIN_NAME}
+      rap.host: ${PROXY_NAME}
       rap.port: 7990
-      rap.le_host: ${DOMAIN_NAME}
+      rap.le_host: ${PROXY_NAME}
 
   database:
     image: postgres:9.4
