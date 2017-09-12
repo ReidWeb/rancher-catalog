@@ -23,6 +23,8 @@ services:
       - database
     external_links:
       - ${CROWD_SERVICE}:crowd
+    networks:
+      - proxy-tier
     labels:
       traefik.enable: stack
       traefik.domain: ${BASE_DOMAIN_NAME}
