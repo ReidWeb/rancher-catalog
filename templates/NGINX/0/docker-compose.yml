@@ -23,6 +23,8 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock
     environment:
       - ENABLE_IPV6=true
+    links:
+      - nginx
     depends_on:
       - nginx
     labels:
