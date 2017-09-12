@@ -17,6 +17,7 @@ services:
       LETSENCRYPT_HOST: ${SUB_DOMAIN}.${BASE_DOMAIN_NAME}
       VIRTUAL_PORT: 7990
       LETSENCRYPT_EMAIL: ssl@reidweb.com
+      VIRTUAL_NETWORK: nginx-proxy
     links:
       - database
     depends_on:
