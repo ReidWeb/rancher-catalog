@@ -23,7 +23,7 @@ services:
       - ${EXTERNAL_LINK_SERVICE}:${EXTERNAL_LINK_NAME}
     labels:
       rap.host: ${PROXY_NAME}
-      rap.port: 7990
+      rap.port: 8095
       rap.le_host: ${PROXY_NAME}
 
   database:
