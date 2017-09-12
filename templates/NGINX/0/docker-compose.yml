@@ -20,7 +20,7 @@ services:
       - nginx
     volumes: 
       - /home/reid/rancher/docker-gen/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl
-      - /var/run/docker.sock:/tmp/docker.sock:
+      - /var/run/docker.sock:/tmp/docker.sock
     environment:
       - ENABLE_IPV6=true
     depends_on:
