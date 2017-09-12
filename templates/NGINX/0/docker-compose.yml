@@ -19,7 +19,7 @@ services:
     restart: unless-stopped 
     volumes:
       - /etc/nginx/conf.d:/etc/nginx/conf.d
-      - /home/reid/rancher/docker-gen/run.sh/:/src/run.sh:ro
+      - /home/reid/rancher/docker-gen/:/src/:ro
       - /etc/nginx/vhost.d:/etc/nginx/vhost.d
       - /etc/nginx/html:/usr/share/nginx/html
       - /etc/nginx/certs:/etc/nginx/certs:ro
