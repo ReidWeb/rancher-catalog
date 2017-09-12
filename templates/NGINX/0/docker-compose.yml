@@ -14,8 +14,6 @@ services:
     labels:
       - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
       - "io.rancher.sidekicks=docker-gen,letsencrypt-companion"
-  networks:
-      - proxy-tier
   docker-gen:
     image: jwilder/docker-gen
     restart: unless-stopped 
@@ -37,8 +35,6 @@ services:
       com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen: "true"
     entrypoint:
       - "/src/run.sh"
-  networks:
-      - proxy-tier  
   letsencrypt-companion:
     image: jrcs/letsencrypt-nginx-proxy-companion
     restart: unless-stopped
@@ -50,10 +46,3 @@ services:
       - /etc/nginx/html:/usr/share/nginx/html
       - /etc/nginx/certs:/etc/nginx/certs:rw
       - /var/run/docker.sock:/var/run/docker.sock
-  networks:
-      - proxy-tier
-
-networks:
-  proxy-tier:
-    external:
-      name: nginx-proxy
