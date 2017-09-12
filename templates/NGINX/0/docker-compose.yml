@@ -10,7 +10,10 @@ services:
       - /etc/nginx/conf.d
       - /etc/nginx/vhost.d
       - /usr/share/nginx/html 
-      - /etc/docker-nginx/certs:/etc/nginx/certs:ro
+      - type: volume
+        source: /etc/docker-nginx/certs
+        target: /etc/nginx/certs
+        read_only: true
     labels:
       - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=''
       - io.rancher.sidekicks=docker-gen, letsencrypt-companion
@@ -19,8 +22,14 @@ services:
     volumes_from:
       - nginx
     volumes: 
-      - /home/reid/rancher/docker-gen/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
-      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - type: volume
+        source:  /home/reid/rancher/docker-gen/nginx.tmpl
+        target: /etc/docker-gen/templates/nginx.tmpl
+        read_only: true
+      - type: volume
+        source: /var/run/docker.sock
+        target: /tmp/docker.sock
+        read_only: true
     environment:
       - ENABLE_IPV6=true
     depends_on:
@@ -34,8 +43,11 @@ services:
     volumes_from:
       - nginx
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /etc/docker-nginx/certs:/etc/nginx/certs:rw
+      - type: volume
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+        read_only: true
+      - /etc/docker-nginx/certs:/etc/nginx/certs
   whoami:
     image: jwilder/whoami
     environment:
