@@ -19,8 +19,6 @@ services:
       - database
     external_links:
       - ${CROWD_SERVICE}:crowd
-    networks:
-      - proxy-tier
     labels:
       rap.host: ${DOMAIN_NAME}
       rap.port: 7990
@@ -30,8 +28,3 @@ services:
     restart: always
     volumes:
       - ${DB_DATA_PATH}:/var/lib/postgresql/data
-
-networks:
-  proxy-tier:
-    external:
-      name: nginx-proxy
