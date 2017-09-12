@@ -7,9 +7,15 @@ services:
       - "443:443"
     restart: always
     volumes:
-      - /etc/nginx/conf.d
-      - /etc/nginx/vhost.d
-      - /usr/share/nginx/html 
+      - type: volume
+        source: /etc/nginx/conf.d
+        target: /etc/nginx/conf.d
+      - type: volume
+        source: /etc/nginx/vhost.d
+        target: /etc/nginx/vhost.d
+      - type: volume
+        source: /usr/share/nginx/html 
+        target: /usr/share/nginx/html 
       - type: volume
         source: /etc/docker-nginx/certs
         target: /etc/nginx/certs
@@ -47,7 +53,9 @@ services:
         source: /var/run/docker.sock
         target: /var/run/docker.sock
         read_only: true
-      - /etc/docker-nginx/certs:/etc/nginx/certs
+      - type: volume
+        source: /etc/docker-nginx/certs
+        target: /etc/nginx/certs
   whoami:
     image: jwilder/whoami
     environment:
