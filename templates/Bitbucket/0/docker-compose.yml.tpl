@@ -13,6 +13,10 @@ services:
       SERVER_PROXY_PORT: ${PROXY_PORT}
       SERVER_PROXY_NAME: ${SUB_DOMAIN}.${BASE_DOMAIN_NAME}
       ELASTICSEARCH_ENABLED: true
+      VIRTUAL_HOST: ${SUB_DOMAIN}.${BASE_DOMAIN_NAME}
+      LETSENCRYPT_HOST: ${SUB_DOMAIN}.${BASE_DOMAIN_NAME}
+      VIRTUAL_PORT: 7990
+      LETSENCRYPT_EMAIL: ssl@reidweb.com
     links:
       - database
     depends_on:
