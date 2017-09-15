@@ -20,9 +20,9 @@ services:
     external_links:
       - ${CROWD_SERVICE}:crowd
     labels:
-      rap.host: ${DOMAIN_NAME}
-      rap.port: 7990
-      rap.le_host: ${DOMAIN_NAME}
+      com.reidweb.nginx.host: ${DOMAIN_NAME}
+      com.reidweb.nginx.port: 7990
+      com.reidweb.nginx.le_host: ${DOMAIN_NAME}
   database:
     image: postgres:9.4
     restart: always
