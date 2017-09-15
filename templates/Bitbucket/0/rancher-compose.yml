@@ -30,11 +30,23 @@
       type: boolean
       default: false
     - variable: DOMAIN_NAME
-      label: Domain name on which to run
-      description: Domain name on which to run
+      label: Primary domain name on which to run
+      description: Primary domain name on which to run
       required: false
       type: string
       default: "source.np.docker.reidweb.com"
+    - variable: DOMAIN_NAMES
+      label: Domain name list on which to run, comma delimited
+      description: Domain name list on which to run, comma delimited
+      required: false
+      type: string
+      default: "source.np.docker.reidweb.com,git.np.docker.reidweb.com,bitbucket.np.docker.reidweb.com"
+    - variable: LE_DOMAIN_NAMES
+      label: Domain name list on which to run, semi-colon delimited
+      description: Domain name list on which to run, semi-colon delimited
+      required: false
+      type: string
+      default: "source.np.docker.reidweb.com;git.np.docker.reidweb.com;bitbucket.np.docker.reidweb.com"
     - variable: PROXY_PORT
       label: Port for proxy setup in BitBucket Server, leave blank if not doing so
       description: Name for proxy setup in BitBucket Server, leave blank if not doing so
