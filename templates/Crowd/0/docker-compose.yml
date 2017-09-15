@@ -22,9 +22,9 @@ services:
     external_links:
       - ${EXTERNAL_LINK_SERVICE}:${EXTERNAL_LINK_NAME}
     labels:
-      rap.host: ${PROXY_NAME}
-      rap.port: 8095
-      rap.le_host: ${PROXY_NAME}
+      com.reidweb.nginx.host: ${PROXY_NAME}
+      com.reidweb.nginx.port: 8095
+      com.reidweb.nginx.le_host: ${PROXY_NAME}
 
   database:
     image: postgres:9.4
