@@ -1,9 +1,0 @@
-name: Traefik by ReidWeb
-description: |
-  Traefik active load balancer
-version: v1.4.0-rc2-rancher1
-category: Load Balancing
-maintainer: "Peter Reid <peter@reidweb.com>"
-minimum_rancher_version: v0.59.0
-license:
-projectURL: https://github.com/rawmind0/alpine-traefik
