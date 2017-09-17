@@ -39,9 +39,6 @@ services:
     volumes:
       - /home/reid/tmp/env.yaml:/container/environment/01-custom/env.yaml
     # command: --loglevel debug
-    expose:
-      - "80"
-      - "443"
-    ports:
-      - "${admin_external_port}:80"
-      - "${admin_external_port_https}:443"
+    labels:
+      com.reidweb.nginx.host: ldap.np.docker.reidweb.com
+      com.reidweb.nginx.port: 443
