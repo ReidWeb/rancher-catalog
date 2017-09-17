@@ -17,12 +17,6 @@
       required: true
       type: string
       default: "/home/atlassian/database-data/bitbucket"
-    - variable: SHOULD_PROXY
-      description: Whether to use traefik
-      label: Whether to use traefik
-      required: true
-      type: boolean
-      default: false
     - variable: SERVER_SECURE
       description: Whether running behind a reverse proxy with SSL enabled
       label: Whether running behind a reverse proxy with SSL enabled
@@ -41,12 +35,6 @@
       required: false
       type: string
       default: "source.np.docker.reidweb.com,git.np.docker.reidweb.com,bitbucket.np.docker.reidweb.com"
-    - variable: LE_DOMAIN_NAMES
-      label: Domain name list on which to run, semi-colon delimited
-      description: Domain name list on which to run, semi-colon delimited
-      required: false
-      type: string
-      default: "source.np.docker.reidweb.com;git.np.docker.reidweb.com;bitbucket.np.docker.reidweb.com"
     - variable: PROXY_PORT
       label: Port for proxy setup in BitBucket Server, leave blank if not doing so
       description: Name for proxy setup in BitBucket Server, leave blank if not doing so
