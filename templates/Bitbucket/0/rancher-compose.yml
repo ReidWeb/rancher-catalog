@@ -60,6 +60,12 @@
         - ""
         - "http"
         - "https"
+    - variable: USE_TEST_LE
+      description: Use Let's Encrypt Test CA
+      label: Whether to use Let's Encrypt Test CA
+      required: true
+      type: boolean
+      default: false
     - variable: CROWD_SERVICE
       label: A crowd service to connect to.
       description: Select an external service to link to

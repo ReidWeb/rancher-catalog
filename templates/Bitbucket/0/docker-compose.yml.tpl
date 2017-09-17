@@ -23,6 +23,7 @@ services:
       com.reidweb.nginx.host: ${DOMAIN_NAMES}
       com.reidweb.nginx.port: 7990
       com.reidweb.nginx.le_host: ${LE_DOMAIN_NAMES}
+      com.reidweb.nginx.le_test: ${USE_TEST_LE}
   database:
     image: postgres:9.4
     restart: always
