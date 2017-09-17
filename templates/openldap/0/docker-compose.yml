@@ -34,15 +34,11 @@ services:
       LDAP_READONLY_USER_USERNAME: "${readonly_user_username}"
       LDAP_READONLY_USER_PASSWORD: "${readonly_user_password}"
       PHPLDAPADMIN_SERVER_ADMIN: "${admin_email}"
-      PHPLDAPADMIN_HTTPS: ${admin_ui_https}
+      PHPLDAPADMIN_HTTPS: false
       PHPLDAPADMIN_LDAP_CLIENT_TLS: ${client_tls}
     volumes:
       - /home/reid/tmp/env.yaml:/container/environment/01-custom/env.yaml
     # command: --loglevel debug
     labels:
       com.reidweb.nginx.host: ldap.np.docker.reidweb.com
-      com.reidweb.nginx.port: 443
-      com.reidweb.nginx.le_host: ldap.np.docker.reidweb.com
-    expose:
-      - "80"
-      - "443"
+      com.reidweb.nginx.port: 80
