@@ -42,3 +42,7 @@ services:
     labels:
       com.reidweb.nginx.host: ldap.np.docker.reidweb.com
       com.reidweb.nginx.port: 443
+      com.reidweb.nginx.le_host: ldap.np.docker.reidweb.com
+    expose:
+      - "80"
+      - "443"
