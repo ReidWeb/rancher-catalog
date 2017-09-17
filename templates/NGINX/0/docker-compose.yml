@@ -1,7 +1,7 @@
 version: '2'
 services:
   nginx:
-    image: reidweb/rancher-nginx:v1.0.7
+    image: reidweb/rancher-nginx:v1.0.8
     environment:
       DEFAULT_HOST: ${DEFAULT_HOST}
       DEFAULT_EMAIL: ${DEFAULT_EMAIL}
