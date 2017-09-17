@@ -24,7 +24,7 @@ services:
     labels:
       com.reidweb.nginx.host: ${PROXY_NAME}
       com.reidweb.nginx.port: 8095
-
+      com.reidweb.nginx.le_host: ${PROXY_NAME}
   database:
     image: postgres:9.4
     restart: always

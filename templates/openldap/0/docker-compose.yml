@@ -41,3 +41,4 @@ services:
     labels:
       com.reidweb.nginx.host: ${ui_hostname}
       com.reidweb.nginx.port: 80
+      com.reidweb.nginx.le_host: ${ui_hostname}
