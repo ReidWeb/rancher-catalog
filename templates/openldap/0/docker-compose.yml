@@ -21,8 +21,8 @@ services:
     volumes:
       - /srv/openldap/var/lib/ldap:/var/lib/ldap:rw
       - /srv/openldap/etc/ldap/slapd.d:/etc/ldap/slapd.d:rw
-      - ${cert_path}:/container/service/slapd/assets/certs
-      - /data/rancher-active-proxy/letsencrypt/archive:/container/service/slapd/archive
+      - ${cert_path}:/container/service/slapd/assets/certs:ro
+      - /data/rancher-active-proxy/letsencrypt/archive:/container/service/slapd/archive:ro
     expose:
       - "389"
       - "636"
