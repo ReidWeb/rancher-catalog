@@ -73,6 +73,20 @@
       type: "int"
       default: "389"
       required: true
+    - variable: "ldap_tls_port"
+      label: "LDAP bind port"
+      description: |
+        Host port to bind LDAP to for TLS
+      type: "int"
+      default: "639"
+      required: true
+    - variable: "cert_path"
+      label: "Path to certificate directory"
+      description: |
+        Path to certificate directory
+      type: "string"
+      required: "false"
+      default: "/data/rancher-active-proxy/letsencrypt/live/ldap.np.docker.reidweb.com"
     - variable: "ui_hostname"
       label: "NGINX target host name"
       description: |
