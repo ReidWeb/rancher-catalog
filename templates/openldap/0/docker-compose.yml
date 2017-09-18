@@ -12,22 +12,22 @@ services:
       LDAP_BASE_DN: "${base_dn}"
       LDAP_READONLY_USER_USERNAME: "${readonly_user_username}"
       LDAP_READONLY_USER_PASSWORD: "${readonly_user_password}"
-      # LDAP_TLS: true
-      # LDAP_TLS_CRT_FILENAME: fullchain.pem
-      # LDAP_TLS_KEY_FILENAME: privkey.pem
-      # LDAP_TLS_CA_CRT_FILENAME: fullchain.pem
-      # LDAP_TLS_CIPHER_SUITE: "NORMAL"
-      # LDAP_TLS_VERIFY_CLIENT: "allow"
+      LDAP_TLS: true
+      LDAP_TLS_CRT_FILENAME: fullchain.pem
+      LDAP_TLS_KEY_FILENAME: privkey.pem
+      LDAP_TLS_CA_CRT_FILENAME: fullchain.pem
+      LDAP_TLS_CIPHER_SUITE: "NORMAL"
+      LDAP_TLS_VERIFY_CLIENT: "allow"
     volumes:
       - /srv/openldap/var/lib/ldap:/var/lib/ldap:rw
       - /srv/openldap/etc/ldap/slapd.d:/etc/ldap/slapd.d:rw
-      # - ${cert_path}:/container/service/slapd/assets/certs
+      - ${cert_path}:/container/service/slapd/assets/certs
     expose:
       - "389"
-      - "639"
+      - "636"
     ports:
       - "${ldap_external_port}:389"
-      - "${ldap_tls_port}:639"
+      - "${ldap_tls_port}:636"
   ldap-admin:
     image: "osixia/phpldapadmin:0.7.1"
     depends_on:
