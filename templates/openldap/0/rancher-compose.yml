@@ -86,7 +86,7 @@
         Path to certificate directory
       type: "string"
       required: false
-      default: "/data/rancher-active-proxy/letsencrypt/live/ldap.np.docker.reidweb.com"
+      default: "/data/openldap-certs"
     - variable: "ui_hostname"
       label: "NGINX target host name"
       description: |
