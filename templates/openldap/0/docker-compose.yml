@@ -42,9 +42,13 @@ services:
       LDAP_READONLY_USER_PASSWORD: "${readonly_user_password}"
       PHPLDAPADMIN_SERVER_ADMIN: "${admin_email}"
       PHPLDAPADMIN_HTTPS: false
-      PHPLDAPADMIN_LDAP_CLIENT_TLS: ${client_tls}
+      PHPLDAPADMIN_LDAP_CLIENT_TLS: true
+      PHPLDAPADMIN_LDAP_CLIENT_TLS_CRT_FILENAME: "fullchain.pem"
+      PHPLDAPADMIN_LDAP_CLIENT_TLS_KEY_FILENAME: "privkey.pem"
+      PHPLDAPADMIN_LDAP_CLIENT_TLS_CA_CRT_FILENAME: "fullchain.pem"
     volumes:
       - /home/reid/tmp/env.yaml:/container/environment/01-custom/env.yaml
+      - ${cert_path}:/container/service/ldap-client/assets/certs/:ro
     labels:
       com.reidweb.nginx.host: ${ui_hostname}
       com.reidweb.nginx.port: 80
