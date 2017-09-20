@@ -12,13 +12,20 @@ services:
       LDAP_BASE_DN: "${base_dn}"
       LDAP_READONLY_USER_USERNAME: "${readonly_user_username}"
       LDAP_READONLY_USER_PASSWORD: "${readonly_user_password}"
+      LDAP_TLS: true
+      LDAP_TLS_CRT_FILENAME: "fullchain.pem"
+      LDAP_TLS_KEY_FILENAME: "privkey.pem"
+      LDAP_TLS_CA_CRT_FILENAME: "fullchain.pem"
+      LDAP_TLS_CIPHER_SUITE: "NORMAL"
+      LDAP_TLS_VERIFY_CLIENT: "allow"
     volumes:
       - /srv/openldap/var/lib/ldap:/var/lib/ldap:rw
       - /srv/openldap/etc/ldap/slapd.d:/etc/ldap/slapd.d:rw
+      - ${cert_path}:/container/service/slapd/assets/certs
     expose:
-      - "389"
+      - "636"
     ports:
-      - "${ldap_external_port}:389"
+      - "${ldap_tls_port}:636"
   ldap-admin:
     image: "osixia/phpldapadmin:0.7.1"
     depends_on:
@@ -34,14 +41,11 @@ services:
       LDAP_READONLY_USER_USERNAME: "${readonly_user_username}"
       LDAP_READONLY_USER_PASSWORD: "${readonly_user_password}"
       PHPLDAPADMIN_SERVER_ADMIN: "${admin_email}"
-      PHPLDAPADMIN_HTTPS: ${admin_ui_https}
+      PHPLDAPADMIN_HTTPS: false
       PHPLDAPADMIN_LDAP_CLIENT_TLS: ${client_tls}
     volumes:
       - /home/reid/tmp/env.yaml:/container/environment/01-custom/env.yaml
-    # command: --loglevel debug
-    expose:
-      - "80"
-      - "443"
-    ports:
-      - "${admin_external_port}:80"
-      - "${admin_external_port_https}:443"
+    labels:
+      com.reidweb.nginx.host: ${ui_hostname}
+      com.reidweb.nginx.port: 80
+      com.reidweb.nginx.le_host: ${ui_hostname}
