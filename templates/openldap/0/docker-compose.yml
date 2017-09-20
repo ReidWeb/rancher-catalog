@@ -23,10 +23,8 @@ services:
       - /srv/openldap/etc/ldap/slapd.d:/etc/ldap/slapd.d:rw
       - ${cert_path}:/container/service/slapd/assets/certs
     expose:
-      - "389"
       - "636"
     ports:
-      - "${ldap_external_port}:389"
       - "${ldap_tls_port}:636"
   ldap-admin:
     image: "osixia/phpldapadmin:0.7.1"
