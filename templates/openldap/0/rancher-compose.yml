@@ -97,7 +97,7 @@
 ldap-host:
   scale: 1
   health_check:
-    port: 389
+    port: 636
     interval: 2000
     initializing_timeout: 60000
     unhealthy_threshold: 3
