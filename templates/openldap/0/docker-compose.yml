@@ -48,7 +48,7 @@ services:
       PHPLDAPADMIN_LDAP_CLIENT_TLS_CA_CRT_FILENAME: "fullchain.pem"
     volumes:
       - /home/reid/tmp/env.yaml:/container/environment/01-custom/env.yaml
-      - ${cert_path}:/container/service/ldap-client/assets/certs/:ro
+      - ${cert_path}:/container/service/ldap-client/assets/certs/
     labels:
       com.reidweb.nginx.host: ${ui_hostname}
       com.reidweb.nginx.port: 80
