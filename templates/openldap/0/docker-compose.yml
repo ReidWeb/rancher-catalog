@@ -15,7 +15,7 @@ services:
       LDAP_TLS: true
       LDAP_TLS_CRT_FILENAME: "fullchain.pem"
       LDAP_TLS_KEY_FILENAME: "privkey.pem"
-      LDAP_TLS_CA_CRT_FILENAME: "fullchain.pem"
+      LDAP_TLS_CA_CRT_FILENAME: "ca.pem"
       LDAP_TLS_CIPHER_SUITE: "NORMAL"
       LDAP_TLS_VERIFY_CLIENT: "allow"
     volumes:
@@ -43,7 +43,7 @@ services:
       PHPLDAPADMIN_SERVER_ADMIN: "${admin_email}"
       PHPLDAPADMIN_HTTPS: false
       PHPLDAPADMIN_LDAP_CLIENT_TLS: true
-      PHPLDAPADMIN_LDAP_CLIENT_TLS_CRT_FILENAME: "sitecert.pem"
+      PHPLDAPADMIN_LDAP_CLIENT_TLS_CRT_FILENAME: "fullchain.pem"
       PHPLDAPADMIN_LDAP_CLIENT_TLS_KEY_FILENAME: "privkey.pem"
       PHPLDAPADMIN_LDAP_CLIENT_TLS_CA_CRT_FILENAME: "ca.pem"
       PHPLDAPADMIN_LDAP_CLIENT_TLS_REQCERT: "never"
