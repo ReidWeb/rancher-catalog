@@ -43,9 +43,9 @@ services:
       PHPLDAPADMIN_SERVER_ADMIN: "${admin_email}"
       PHPLDAPADMIN_HTTPS: false
       PHPLDAPADMIN_LDAP_CLIENT_TLS: true
-      PHPLDAPADMIN_LDAP_CLIENT_TLS_CRT_FILENAME: "fullchain.pem"
+      PHPLDAPADMIN_LDAP_CLIENT_TLS_CRT_FILENAME: "sitecert.pem"
       PHPLDAPADMIN_LDAP_CLIENT_TLS_KEY_FILENAME: "privkey.pem"
-      PHPLDAPADMIN_LDAP_CLIENT_TLS_CA_CRT_FILENAME: "fullchain.pem"
+      PHPLDAPADMIN_LDAP_CLIENT_TLS_CA_CRT_FILENAME: "ca.pem"
       PHPLDAPADMIN_LDAP_CLIENT_TLS_REQCERT: "never"
     volumes:
       - /home/reid/tmp/env.yaml:/container/environment/01-custom/env.yaml
