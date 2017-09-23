@@ -67,19 +67,19 @@
       default: false
       required: true
     - variable: "ldap_external_port"
-      label: "LDAP bind port"
+      label: "LDAP bind port, leave blank to disable"
       description: |
-        Host port to bind LDAP to
+        Host port to bind LDAP to, leave blank to disable
       type: "int"
       default: "389"
-      required: true
+      required: false
     - variable: "ldap_tls_port"
-      label: "LDAP bind port"
+      label: "LDAP bind port, leave blank to disable"
       description: |
-        Host port to bind LDAP to for TLS
+        Host port to bind LDAP to for TLS, leave blank to disable
       type: "int"
       default: "636"
-      required: true
+      required: false
     - variable: "cert_path"
       label: "Path to certificate directory"
       description: |
@@ -93,7 +93,7 @@
         NGINX target host name
       type: "string"
       default: "ldap.np.docker.reidweb.com"
-      required: true
+      required: false
 ldap-host:
   scale: 1
   health_check:
