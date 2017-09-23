@@ -94,6 +94,13 @@
       type: "string"
       default: "ldap.np.docker.reidweb.com"
       required: false
+    - variable: "admin_ui_port"
+      label: "Port on which to expose the admin ui, leave blank to not expose"
+      description: |
+        Port on which to expose the admin ui, leave blank to not expose
+      type: "int"
+      default: "9090"
+      required: false
 ldap-host:
   scale: 1
   health_check:
