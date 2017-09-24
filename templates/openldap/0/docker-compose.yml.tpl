@@ -1,7 +1,7 @@
 version: '2'
 services:
   ldap-host:
-    image: "reidweb/openldap:v1.0.14"
+    image: "reidweb/openldap:v1.0.15"
     domainname: "${domain_name}"
     hostname: ldap
     environment:
