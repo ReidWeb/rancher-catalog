@@ -87,6 +87,13 @@
       type: "string"
       required: false
       default: "/data/openldap-certs"
+    - variable: "custom_ldif_path"
+      label: "Path to custom ldif config, leave blank to disable"
+      description: |
+        Path to custom ldif config, leave blank to disable
+      type: "string"
+      required: false
+      default: "/data/custom-ldap-conf"
     - variable: "ui_hostname"
       label: "NGINX target host name"
       description: |
