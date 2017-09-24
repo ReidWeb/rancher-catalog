@@ -26,9 +26,6 @@ services:
 {{- if (.Values.cert_path)}}
       - ${cert_path}:/container/service/slapd/assets/certs
 {{- end}}
-{{- if (.Values.custom_ldif_path)}}
-      - ${custom_ldif_path}:/container/service/slapd/assets/config/bootstrap/ldif/custom
-{{- end}}
     expose:
 {{- if (.Values.ldap_external_port)}}
       - "389"
