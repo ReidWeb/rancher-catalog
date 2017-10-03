@@ -48,7 +48,7 @@ graf-db:
     image: infinityworks/graf-db:11
     command: cat
     volumes:
-      - /var/lib/grafana/
+      - grafana-data:/var/lib/grafana/
     net: none
 
 prometheus-rancher-exporter:
