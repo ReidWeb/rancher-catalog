@@ -48,7 +48,7 @@ graf-db:
     image: infinityworks/graf-db:11
     command: cat
     volumes:
-      - /var/lib/grafana/
+      - grafana-data:/var/lib/grafana/
     net: none
 
 grafana:
@@ -58,8 +58,9 @@ grafana:
       - 3000:3000
     labels:
       io.rancher.sidekicks: graf-db
-    volumes_from:
-       - graf-db
+    volumes:
+      - grafana-data:/var/lib/grafana/
+      - grafana-config:/etc/grafana/
     links:
       - prometheus:prometheus
       - prometheus-rancher-exporter:prometheus-rancher-exporter
