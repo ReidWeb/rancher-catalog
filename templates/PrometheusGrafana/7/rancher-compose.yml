@@ -11,6 +11,18 @@
     default: "0.0.0.0"
     required: false
     type: "string"
+  - variable: DOMAIN_NAMES
+  label: Domain name list on which to run, comma delimited
+  description: Domain name list on which to run, comma delimited
+  required: false
+  type: string
+  default: "grafana.np.docker.reidweb.com"
+- variable: LE_DOMAIN_NAMES
+  label: Domain name list on which to run, semi-colon delimited
+  description: Domain name list on which to run, semi-colon delimited
+  required: false
+  type: string
+  default: "grafana.np.docker.reidweb.com"
 
 prometheus:
   scale: 1
