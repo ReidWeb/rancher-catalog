@@ -1,22 +1,30 @@
 .catalog:
   name: "Prometheus & Grafana"
-  version: "1.0.3"
+  version: "3.2.0"
   description: "Prometheus Monitoring Solution"
-  uuid: prometheus-1
-  minimum_rancher_version: v0.56.0
+  uuid: prometheus-2
+  minimum_rancher_version: v1.5.5
   questions:
-
-ranch-eye:
-  upgrade_strategy:
-    start_first: true
-
-node-exporter:
-  upgrade_strategy:
-    start_first: true
+  - variable: "RANCHER_SERVER"
+    label: "Rancher Server"
+    description: "IP Address of the rancher server, no HTTP or slashes. This is only required for users that have enabled metrics to be exported by Rancher"
+    default: "0.0.0.0"
+    required: false
+    type: "string"
+  - variable: DOMAIN_NAMES
+  label: Domain name list on which to run, comma delimited
+  description: Domain name list on which to run, comma delimited
+  required: false
+  type: string
+  default: "grafana.np.docker.reidweb.com"
+- variable: LE_DOMAIN_NAMES
+  label: Domain name list on which to run, semi-colon delimited
+  description: Domain name list on which to run, semi-colon delimited
+  required: false
+  type: string
+  default: "grafana.np.docker.reidweb.com"
 
 prometheus:
-  upgrade_strategy:
-    start_first: true
   scale: 1
   health_check:
     port: 9090
@@ -26,21 +34,7 @@ prometheus:
     healthy_threshold: 2
     response_timeout: 5000
 
-influxdb:
-  upgrade_strategy:
-    start_first: true
-  scale: 1
-  health_check:
-    port: 8086
-    interval: 5000
-    unhealthy_threshold: 3
-    request_line: ''
-    healthy_threshold: 2
-    response_timeout: 5000
-
 grafana:
-  upgrade_strategy:
-    start_first: true
   scale: 1
   health_check:
     port: 3000
@@ -50,12 +44,10 @@ grafana:
     healthy_threshold: 2
     response_timeout: 5000
 
-rancher-api-integration:
-  upgrade_strategy:
-    start_first: true
+prometheus-rancher-exporter:
   scale: 1
   health_check:
-    port: 9010
+    port: 9173
     interval: 5000
     unhealthy_threshold: 3
     request_line: ''

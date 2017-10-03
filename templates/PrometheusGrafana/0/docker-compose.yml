@@ -1,83 +1,72 @@
-ranch-eye:
-  ports:
-  - 9104:9104/tcp
+cadvisor:
   labels:
     io.rancher.scheduler.global: 'true'
-    io.rancher.container.dns: true
   tty: true
-  image: rucknar/ranch-eye:01
+  image: google/cadvisor:latest
   stdin_open: true
-  net: "host"
+  volumes:
+    - "/:/rootfs:ro"
+    - "/var/run:/var/run:rw"
+    - "/sys:/sys:ro"
+    - "/var/lib/docker/:/var/lib/docker:ro"
 
 node-exporter:
-  ports:
-    - 9100:9100
   labels:
     io.rancher.scheduler.global: 'true'
-    io.rancher.container.dns: true
   tty: true
   image: prom/node-exporter:latest
   stdin_open: true
-  net: "host"
 
 prom-conf:
     tty: true
-    image: rucknar/prom-conf:08
+    image: infinityworks/prom-conf:19
     volumes:
       - /etc/prom-conf/
+    net: none
 
 prometheus:
     tty: true
-    image: prom/prometheus:0.17.0
+    image: prom/prometheus:v1.7.1
     command: -alertmanager.url=http://alertmanager:9093 -config.file=/etc/prom-conf/prometheus.yml -storage.local.path=/prometheus -web.console.libraries=/etc/prometheus/console_libraries -web.console.templates=/etc/prometheus/consoles
-    ports:
-      - 9090:9090
     labels:
       io.rancher.sidekicks: prom-conf
     volumes_from:
-       - prom-conf
+      - prom-conf
+    volumes:
+      - prometheus-data:/prometheus
     links:
-      - ranch-eye:ranch-eye
-      - node-exporter:node-exporter
-      - rancher-api-integration:rancher-api-integration
-
-influxdb:
-  image: tutum/influxdb:0.10
-  ports:
-    - 8083:8083
-    - 8086:8086
-    - 8090:8090
-    - 2003:2003
-  environment:
-    - PRE_CREATE_DB=grafana;prometheus;rancher
-    - GRAPHITE_DB=rancher
-    - GRAPHITE_BINDING=:2003
+    - cadvisor:cadvisor
+    - node-exporter:node-exporter
+    - prometheus-rancher-exporter:prometheus-rancher-exporter
+    extra_hosts:
+    - "rancher-server:${RANCHER_SERVER}"
 
 graf-db:
     tty: true
-    image: rucknar/graf-db:02
+    image: infinityworks/graf-db:11
     command: cat
     volumes:
-      - /var/lib/grafana/
+      - grafana-data:/var/lib/grafana/
+    net: none
 
 grafana:
     tty: true
-    image: grafana/grafana:2.6.0
-    ports:
-      - 3000:3000
+    image: grafana/grafana:4.4.3
     labels:
       io.rancher.sidekicks: graf-db
-    volumes_from:
-       - graf-db
+      com.reidweb.nginx.host: ${DOMAIN_NAMES}
+      com.reidweb.nginx.port: 3000
+      com.reidweb.nginx.le_host: ${LE_DOMAIN_NAMES}
+    volumes:
+      - grafana-data:/var/lib/grafana/
+      - grafana-config:/etc/grafana/
     links:
       - prometheus:prometheus
-      - rancher-api-integration:rancher-api-integration
+      - prometheus-rancher-exporter:prometheus-rancher-exporter
 
-rancher-api-integration:
+prometheus-rancher-exporter:
     tty: true
     labels:
       io.rancher.container.create_agent: true
       io.rancher.container.agent.role: environment
-    expose:
-      - 9010:9010
-    image: rucknar/prometheus-rancher-exporter:01
+    image: infinityworks/prometheus-rancher-exporter:v0.22.52
