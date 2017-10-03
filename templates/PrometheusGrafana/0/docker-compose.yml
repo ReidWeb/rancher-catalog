@@ -52,6 +52,8 @@ graf-db:
 grafana:
     tty: true
     image: grafana/grafana:4.4.3
+    ports:
+      - 3000:3000
     labels:
       io.rancher.sidekicks: graf-db
       com.reidweb.nginx.host: ${DOMAIN_NAMES}
