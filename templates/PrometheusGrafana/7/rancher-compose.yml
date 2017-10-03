@@ -1,6 +1,6 @@
 .catalog:
   name: "Prometheus & Grafana"
-  version: "3.1.1"
+  version: "3.2.0"
   description: "Prometheus Monitoring Solution"
   uuid: prometheus-2
   minimum_rancher_version: v1.5.5
