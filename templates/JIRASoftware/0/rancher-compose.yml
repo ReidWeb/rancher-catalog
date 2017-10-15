@@ -40,7 +40,7 @@
       description: Domain name list on which to run, semi-colon delimited
       required: false
       type: string
-      default: "wiki.np.docker.reidweb.com;issues.np.docker.reidweb.com"
+      default: "jira.np.docker.reidweb.com;issues.np.docker.reidweb.com"
     - variable: PROXY_PORT
       label: Port for proxy setup in Jira Server, leave blank if not doing so
       description: Name for proxy setup in Jira Server, leave blank if not doing so
