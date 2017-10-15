@@ -5,7 +5,7 @@ services:
     restart: always
     ports:
     {{- if (.Values.EXPOSE_APP_PORT)}}
-      - 8090:8090
+      - 8080:8080
     {{- end}}
     volumes:
       - ${DATA_PATH}:/var/atlassian/jira
