@@ -5,8 +5,6 @@ services:
     volumes:
       - ${DATA_PATH}:/var/atlassian/application-data/confluence
     restart: always
-    links:
-      - database
     ports:
     {{- if (.Values.EXPOSE_APP_PORT)}}
       - 8090:8090
