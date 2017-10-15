@@ -8,7 +8,9 @@ services:
     links:
       - database
     ports:
+    {{- if (.Values.EXPOSE_APP_PORT)}}
       - 8090:8090
+    {{- end}}
       - 8091:8091
     environment:
       CATALINA_CONNECTOR_SECURE: ${SERVER_SECURE}

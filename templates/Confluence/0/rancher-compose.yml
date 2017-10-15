@@ -17,6 +17,12 @@
       required: true
       type: string
       default: "/home/atlassian/database-data/confluence"
+    - variable: EXPOSE_APP_PORT
+      label: Whether to expose the application port outside of the stack network, may need to be exposed during setup
+      description: Whether to expose the application port outside of the stack network, may need to be exposed during setup
+      required: true
+      defaut: true
+      type: boolean
     - variable: SERVER_SECURE
       description: Whether running behind a reverse proxy with SSL enabled
       label: Whether running behind a reverse proxy with SSL enabled
@@ -41,7 +47,6 @@
       required: false
       type: string
       default: "wiki.np.docker.reidweb.com;confluence.np.docker.reidweb.com"
-    
     - variable: PROXY_PORT
       label: Port for proxy setup in Confluence Server, leave blank if not doing so
       description: Name for proxy setup in Confluence Server, leave blank if not doing so
