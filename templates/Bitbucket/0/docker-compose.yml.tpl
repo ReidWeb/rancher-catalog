@@ -1,7 +1,7 @@
 version: '2'
 services:
   bitbucket:
-    image: atlassian/bitbucket-server:5.2.0
+    image: atlassian/bitbucket-server:5.4
     volumes:
       - ${DATA_PATH}:/var/atlassian/application-data/bitbucket
     restart: always
