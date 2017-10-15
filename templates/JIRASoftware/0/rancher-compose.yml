@@ -17,6 +17,12 @@
       required: true
       type: string
       default: "/home/atlassian/database-data/jira"
+    - variable: EXPOSE_APP_PORT
+      label: Whether to expose the application port outside of the stack network, may need to be exposed during setup
+      description: Whether to expose the application port outside of the stack network, may need to be exposed during setup
+      required: true
+      defaut: true
+      type: boolean
     - variable: DOMAIN_NAME
       label: Primary domain name on which to run
       description: Primary domain name on which to run

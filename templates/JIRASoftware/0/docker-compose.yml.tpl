@@ -3,10 +3,10 @@ services:
   jira:
     image: cptactionhank/atlassian-jira-software:7.5.0
     restart: always
-    links:
-      - database
-    external_links:
-      - crowd/crowd:crowd
+    ports:
+    {{- if (.Values.EXPOSE_APP_PORT)}}
+      - 8090:8090
+    {{- end}}
     volumes:
       - ${DATA_PATH}:/var/atlassian/jira
     environment:
@@ -18,6 +18,12 @@ services:
       com.reidweb.nginx.host: ${DOMAIN_NAMES}
       com.reidweb.nginx.port: 8080
       com.reidweb.nginx.le_host: ${LE_DOMAIN_NAMES}
+    external_links:
+      - crowd/crowd:crowd
+    links:
+      - database
+    depends_on:
+      - database
 
   database:
     image: postgres:9.4
