@@ -7,6 +7,8 @@ services:
     restart: always
     links:
       - database
+    ports:
+      - 8091:8091
     environment:
       CATALINA_CONNECTOR_SECURE: ${SERVER_SECURE}
       CATALINA_CONNECTOR_SCHEME: ${PROXY_SCHEME}
