@@ -14,7 +14,7 @@ services:
       CATALINA_CONNECTOR_PROXYNAME: ${DOMAIN_NAME}
     labels:
       com.reidweb.nginx.host: ${DOMAIN_NAMES}
-      com.reidweb.nginx.port: 8091
+      com.reidweb.nginx.port: 8090
       com.reidweb.nginx.le_host: ${LE_DOMAIN_NAMES}
     external_links:
       - crowd/crowd:crowd

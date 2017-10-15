@@ -68,7 +68,7 @@
 confluence:
   scale: 1
   health_check:
-    port: 8091
+    port: 8090
     interval: 2000
     initializing_timeout: 60000
     unhealthy_threshold: 3
