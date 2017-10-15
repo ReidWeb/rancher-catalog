@@ -14,6 +14,8 @@ services:
       CATALINA_CONNECTOR_SCHEME: ${PROXY_SCHEME}
       CATALINA_CONNECTOR_PROXYPORT: ${PROXY_PORT}
       CATALINA_CONNECTOR_PROXYNAME: ${DOMAIN_NAME}
+      JVM_MINIMUM_MEMORY: 1024m
+      JVM_MAXIMUM_MEMORY: 4096m
     labels:
       com.reidweb.nginx.host: ${DOMAIN_NAMES}
       com.reidweb.nginx.port: 8090
