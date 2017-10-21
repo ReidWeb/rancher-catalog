@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 cadvisor:
   labels:
     io.rancher.scheduler.global: 'true'

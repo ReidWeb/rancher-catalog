@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 services:
   jira:
     image: cptactionhank/atlassian-jira-software:7.5.0

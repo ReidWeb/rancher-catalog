@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 services:
   ldap-host:
     image: "reidweb/openldap:v1.0.17"
