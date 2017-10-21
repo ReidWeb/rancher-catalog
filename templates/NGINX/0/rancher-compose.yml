@@ -25,6 +25,3 @@
       label: "Set to true to enable debug"
       default: "False"
       type: string
-    - variable: EXTRA_PORTS
-      label: "Extra ports to expose, in port format"
-      type: multiline
