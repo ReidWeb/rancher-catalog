@@ -17,8 +17,8 @@ services:
     ports:
     - ${DEFAULT_PORT}:80/tcp
     - 443:443/tcp
-{{- if (.Values.EXTRA_PORTS)}}
+  {{- if (.Values.EXTRA_PORTS)}}
     ${EXTRA_PORTS}
-{{- end}}
+  {{- end}}
     labels:
       io.rancher.container.pull_image: always
