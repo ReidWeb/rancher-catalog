@@ -27,4 +27,4 @@
       type: string
     - variable: EXTRA_PORTS
       label: "Extra ports to expose, in port format"
-      type: string
+      type: multiline
