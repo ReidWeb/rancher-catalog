@@ -26,5 +26,5 @@
       default: "False"
       type: string
     - variable: EXTRA_PORTS
-      label: "Extra ports to expose, comma seperated"
+      label: "Extra ports to expose, in port format"
       type: string

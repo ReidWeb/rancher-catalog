@@ -17,8 +17,8 @@ services:
     ports:
     - ${DEFAULT_PORT}:80/tcp
     - 443:443/tcp
-    {{- foreach from=(.Values.EXTRA_PORTS) item=extraPortItem}}
-    - {$extraPortItem}:{$extraPortItem}/tcp
-    {{/foreach}}
+    {{- if (.Values.EXTRA_PORTS)}}
+      ${EXTRA_PORTS}
+    {{- end}}
     labels:
       io.rancher.container.pull_image: always
