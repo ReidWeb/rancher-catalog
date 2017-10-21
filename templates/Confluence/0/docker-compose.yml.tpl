@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   confluence:
     image: atlassian/confluence-server:6.4

@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   bitbucket:
     image: atlassian/bitbucket-server:5.4

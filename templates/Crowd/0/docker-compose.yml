@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   crowd:
     image: blacklabelops/crowd:3.0.1
