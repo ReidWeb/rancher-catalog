@@ -17,7 +17,7 @@ services:
     ports:
     - ${DEFAULT_PORT}:80/tcp
     - 443:443/tcp
-    {{-  foreach from=(.Values.EXTRA_PORTS) item=extraPortItem}}
+    {{- foreach from=(.Values.EXTRA_PORTS) item=extraPortItem}}
     - {$extraPortItem}:{$extraPortItem}/tcp
     {{/foreach}}
     labels:
