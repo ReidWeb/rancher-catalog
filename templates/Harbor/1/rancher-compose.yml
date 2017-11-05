@@ -64,19 +64,6 @@ services:
     scale: 1
   proxy:
     scale: 1
-  harbor-lb:  
-    scale: 1
-    lb_config:
-      port_rules:
-      - source_port: 80
-        target_port: 80
-        service: proxy
-    health_check:
-      port: 42
-      interval: 2000
-      unhealthy_threshold: 3
-      healthy_threshold: 2
-      response_timeout: 2000
   jobservice:
     scale: 1
   ui:
