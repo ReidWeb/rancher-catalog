@@ -47,7 +47,7 @@ services:
     image: mreferre/harbor-setupwrapper:1.1.1-1
     container_name: harbor-setupwrapper
     environment:
-      - HARBORHOSTNAME=${harborhostname}.${traefikdomain}
+      - HARBORHOSTNAME=reg.np.docker.reidweb.com:443
       - HARBOR_ADMIN_PASSWORD=${harbor_admin_password}
     volumes:
       - data:/data
@@ -282,5 +282,5 @@ services:
     labels:
       io.rancher.container.hostname_override: container_name
       com.reidweb.nginx.host: ${DOMAIN_NAMES}
-      com.reidweb.nginx.port: 80
+      com.reidweb.nginx.port: 443
       com.reidweb.nginx.le_host: ${LE_DOMAIN_NAMES}
