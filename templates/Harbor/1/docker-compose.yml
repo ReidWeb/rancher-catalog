@@ -64,18 +64,6 @@ services:
     labels:
       io.rancher.container.hostname_override: container_name
       io.rancher.container.start_once: 'true'
-  log:
-    image: vmware/harbor-log:v1.1.1
-    container_name: harbor-log
-    restart: always
-    volumes:
-      - /var/log/harbor/:/var/log/docker/:z
-    ports:
-      - 1514:514
-    labels:
-      io.rancher.scheduler.global: 'true'
-      io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-      io.rancher.container.hostname_override: container_name
   registry:
     image: vmware/registry:photon-2.6.0
     container_name: registry
@@ -98,13 +86,7 @@ services:
     command:
       ["serve", "/etc/registry/config.yml"]
     depends_on:
-      - log
       - harbor-setupwrapper
-    logging:
-      driver: "syslog"
-      options:
-        syslog-address: "tcp://127.0.0.1:1514"
-        tag: "registry"
     labels:
       io.rancher.container.hostname_override: container_name
   mysql:
@@ -126,13 +108,7 @@ services:
       - configjobservice:/configjobservice
       - configadminserver:/configadminserver
     depends_on:
-      - log
       - harbor-setupwrapper
-    logging:
-      driver: "syslog"
-      options:
-        syslog-address: "tcp://127.0.0.1:1514"
-        tag: "mysql"
     entrypoint:
       - /bin/sh
       - -c
@@ -160,13 +136,7 @@ services:
       - configjobservice:/configjobservice
       - configadminserver:/configadminserver
     depends_on:
-      - log
       - harbor-setupwrapper
-    logging:
-      driver: "syslog"
-      options:
-        syslog-address: "tcp://127.0.0.1:1514"
-        tag: "adminserver"
     entrypoint:
       - /bin/sh
       - -c
@@ -193,15 +163,9 @@ services:
       - configjobservice:/configjobservice
       - configadminserver:/configadminserver
     depends_on:
-      - log
       - harbor-setupwrapper
       - adminserver
       - registry
-    logging:
-      driver: "syslog"
-      options:
-        syslog-address: "tcp://127.0.0.1:1514"
-        tag: "ui"
     entrypoint:
       - /bin/sh
       - -c
@@ -228,15 +192,9 @@ services:
       - configjobservice:/configjobservice
       - configadminserver:/configadminserver
     depends_on:
-      - log
       - harbor-setupwrapper
       - ui
       - adminserver
-    logging:
-      driver: "syslog"
-      options:
-        syslog-address: "tcp://127.0.0.1:1514"
-        tag: "jobservice"
     entrypoint:
       - /bin/sh
       - -c
@@ -266,7 +224,6 @@ services:
       - mysql
       - registry
       - ui
-      - log
       - harbor-setupwrapper
     external_links: #these entries seem to be required for the proxy service to start correctly
       - registry
@@ -274,17 +231,7 @@ services:
       - mysql
       - jobservice
       - adminserver
-    logging:
-      driver: "syslog"
-      options:
-        syslog-address: "tcp://127.0.0.1:1514"
-        tag: "proxy"
     labels:
-      io.rancher.container.hostname_override: container_name
-  harbor-lb:
-    image: rancher/lb-service-haproxy
-    labels:
-      io.rancher.scheduler.global: 'true'
       io.rancher.container.hostname_override: container_name
       com.reidweb.nginx.host: ${DOMAIN_NAMES}
       com.reidweb.nginx.port: 80
