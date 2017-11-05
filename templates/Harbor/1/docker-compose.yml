@@ -62,7 +62,6 @@ services:
     command: ["/harbor/harbor-setupwrapper.sh"]
     network_mode: "none"
     labels:
-      io.rancher.scheduler.affinity:host_label: ${harborhostlabel}
       io.rancher.container.hostname_override: container_name
       io.rancher.container.start_once: 'true'
   log:
@@ -75,7 +74,6 @@ services:
       - 1514:514
     labels:
       io.rancher.scheduler.global: 'true'
-      io.rancher.scheduler.affinity:host_label: ${harborhostlabel}
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.hostname_override: container_name
   registry:
@@ -108,7 +106,6 @@ services:
         syslog-address: "tcp://127.0.0.1:1514"
         tag: "registry"
     labels:
-      io.rancher.scheduler.affinity:host_label: ${harborhostlabel}
       io.rancher.container.hostname_override: container_name
   mysql:
     image: vmware/harbor-db:v1.1.1
@@ -142,7 +139,6 @@ services:
     command:
       - /configdb/entrypointdb.sh
     labels:
-      io.rancher.scheduler.affinity:host_label: ${harborhostlabel}
       io.rancher.container.hostname_override: container_name
   adminserver:
     image: vmware/harbor-adminserver:v1.1.1
@@ -177,7 +173,6 @@ services:
     command:
       - /configadminserver/entrypointadminserver.sh
     labels:
-      io.rancher.scheduler.affinity:host_label: ${harborhostlabel}
       io.rancher.container.hostname_override: container_name
   ui:
     image: vmware/harbor-ui:v1.1.1
@@ -213,7 +208,6 @@ services:
     command:
       - /configui/entrypointui.sh
     labels:
-      io.rancher.scheduler.affinity:host_label: ${harborhostlabel}
       io.rancher.container.hostname_override: container_name
   jobservice:
     image: vmware/harbor-jobservice:v1.1.1
@@ -249,7 +243,6 @@ services:
     command:
       - /configjobservice/entrypointjobservice.sh
     labels:
-     io.rancher.scheduler.affinity:host_label: ${harborhostlabel}
      io.rancher.container.hostname_override: container_name
   proxy:
     image: vmware/nginx:1.11.5-patched
@@ -287,13 +280,11 @@ services:
         syslog-address: "tcp://127.0.0.1:1514"
         tag: "proxy"
     labels:
-      io.rancher.scheduler.affinity:host_label: ${harborhostlabel}
       io.rancher.container.hostname_override: container_name
   harbor-lb:
     image: rancher/lb-service-haproxy
     labels:
       io.rancher.scheduler.global: 'true'
-      io.rancher.scheduler.affinity:host_label: ${harborlbhostlabel}
       io.rancher.container.hostname_override: container_name
       com.reidweb.nginx.host: ${DOMAIN_NAMES}
       com.reidweb.nginx.port: 80
