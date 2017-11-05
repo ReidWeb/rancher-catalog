@@ -282,5 +282,5 @@ services:
     labels:
       io.rancher.container.hostname_override: container_name
       com.reidweb.nginx.host: ${DOMAIN_NAMES}
-      com.reidweb.nginx.port: 443
+      com.reidweb.nginx.port: 80
       com.reidweb.nginx.le_host: ${LE_DOMAIN_NAMES}
