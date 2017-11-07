@@ -257,7 +257,8 @@ services:
       - etcui:/etc/ui
       - etcjobservice:/etc/jobservice
       - etcregistry:/etc/registry
-      - etcnginx:/etc/nginx
+      - /data/harbor-nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /data/harbor-certs:/etc/nginx/cert:ro
       - configdb:/configdb
       - configui:/configui
       - configjobservice:/configjobservice
