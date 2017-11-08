@@ -49,6 +49,7 @@ services:
     environment:
       - HARBORHOSTNAME=reg.np.docker.reidweb.com:443
       - HARBOR_ADMIN_PASSWORD=${harbor_admin_password}
+      - UI_URL_PROTOCOL=https
     volumes:
       - data:/data
       - etcui:/etc/ui
