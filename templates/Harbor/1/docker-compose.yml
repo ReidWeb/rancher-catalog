@@ -42,6 +42,8 @@ volumes: #most volumes mappings require optimization (now all volumes map all co
   data-config:
     #external: true
     driver: ${volumedriver}
+  certs:
+      - /data/harbor-certs
 services:
   harbor-setupwrapper:
     image: mreferre/harbor-setupwrapper:1.1.1-1
@@ -50,7 +52,9 @@ services:
       - HARBORHOSTNAME=reg.np.docker.reidweb.com
       - HARBOR_ADMIN_PASSWORD=${harbor_admin_password}
       - UI_URL_PROTOCOL=https
-      - SELF_REGISTRATION=false
+      - SELF_REGISTRATION=off
+      - SSL_CERT=/data/cert/fullchain.pem
+      - SSL_CERT_KEY=/data/cert/privkey.pem
     volumes:
       - data:/data
       - etcui:/etc/ui
@@ -61,6 +65,7 @@ services:
       - configui:/configui
       - configjobservice:/configjobservice
       - configadminserver:/configadminserver
+      - certs/:/data/cert:ro
     command: ["/harbor/harbor-setupwrapper.sh"]
     network_mode: "none"
     labels:
@@ -95,6 +100,7 @@ services:
       - configui:/configui
       - configjobservice:/configjobservice
       - configadminserver:/configadminserver
+      - certs/:/data/cert:ro
     environment:
       - GODEBUG=netdns=cgo
     command:
@@ -161,6 +167,7 @@ services:
       - configui:/configui
       - configjobservice:/configjobservice
       - configadminserver:/configadminserver
+      - certs/:/data/cert:ro
     depends_on:
       - log
       - harbor-setupwrapper
@@ -194,6 +201,7 @@ services:
       - configui:/configui
       - configjobservice:/configjobservice
       - configadminserver:/configadminserver
+      - certs/:/data/cert:ro
     depends_on:
       - log
       - harbor-setupwrapper
