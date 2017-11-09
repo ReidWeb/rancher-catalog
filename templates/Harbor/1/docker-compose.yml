@@ -47,8 +47,9 @@ services:
     image: mreferre/harbor-setupwrapper:1.1.1-1
     container_name: harbor-setupwrapper
     environment:
-      - HARBORHOSTNAME=reg.np.docker.reidweb.com:443
+      - HARBORHOSTNAME=reg.np.docker.reidweb.com
       - HARBOR_ADMIN_PASSWORD=${harbor_admin_password}
+      - UI_URL_PROTOCOL=https
     volumes:
       - data:/data
       - etcui:/etc/ui
