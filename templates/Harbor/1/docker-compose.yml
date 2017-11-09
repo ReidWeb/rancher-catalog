@@ -50,6 +50,7 @@ services:
       - HARBORHOSTNAME=reg.np.docker.reidweb.com
       - HARBOR_ADMIN_PASSWORD=${harbor_admin_password}
       - UI_URL_PROTOCOL=https
+      - SELF_REGISTRATION=false
     volumes:
       - data:/data
       - etcui:/etc/ui
