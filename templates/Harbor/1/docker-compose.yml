@@ -42,8 +42,6 @@ volumes: #most volumes mappings require optimization (now all volumes map all co
   data-config:
     #external: true
     driver: ${volumedriver}
-  certs:
-      - /data/harbor-certs
 services:
   harbor-setupwrapper:
     image: mreferre/harbor-setupwrapper:1.1.1-1
@@ -65,7 +63,7 @@ services:
       - configui:/configui
       - configjobservice:/configjobservice
       - configadminserver:/configadminserver
-      - certs/:/data/cert:ro
+      - /data/harbor-certs:/data/cert:ro
     command: ["/harbor/harbor-setupwrapper.sh"]
     network_mode: "none"
     labels:
@@ -100,7 +98,7 @@ services:
       - configui:/configui
       - configjobservice:/configjobservice
       - configadminserver:/configadminserver
-      - certs/:/data/cert:ro
+      - /data/harbor-certs:/data/cert:ro
     environment:
       - GODEBUG=netdns=cgo
     command:
@@ -167,7 +165,7 @@ services:
       - configui:/configui
       - configjobservice:/configjobservice
       - configadminserver:/configadminserver
-      - certs/:/data/cert:ro
+      - /data/harbor-certs:/data/cert:ro
     depends_on:
       - log
       - harbor-setupwrapper
@@ -201,7 +199,7 @@ services:
       - configui:/configui
       - configjobservice:/configjobservice
       - configadminserver:/configadminserver
-      - certs/:/data/cert:ro
+      - /data/harbor-certs:/data/cert:ro
     depends_on:
       - log
       - harbor-setupwrapper
