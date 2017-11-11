@@ -381,6 +381,8 @@ services:
       options:  
         syslog-address: "tcp://127.0.0.1:1514"
         tag: "notary-db"
+    labels:
+      io.rancher.container.hostname_override: container_name
 # networks:
 #   harbor-notary:
 #     external: false
