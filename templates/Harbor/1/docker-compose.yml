@@ -44,7 +44,7 @@ volumes: #most volumes mappings require optimization (now all volumes map all co
     driver: ${volumedriver}
 services:
   harbor-setupwrapper:
-    image: mreferre/harbor-setupwrapper:1.1.1-1
+    image: reidweb/harbor-setupwrapper:latest
     container_name: harbor-setupwrapper
     environment:
       - HARBORHOSTNAME=reg.np.docker.reidweb.com
@@ -61,6 +61,9 @@ services:
       - configui:/configui
       - configjobservice:/configjobservice
       - configadminserver:/configadminserver
+      - confignotary:/confignotary
+      - confignotarysigner:/confignotarysigner
+      - notary-mysql-initdb:/confignotarydb
       - /data/harbor-certs:/data/cert:ro
     command: ["/harbor/harbor-setupwrapper.sh"]
     network_mode: "none"
@@ -213,6 +216,8 @@ services:
       - -c
     command:
       - /configui/entrypointui.sh
+    networks:
+      - harbor-notary
     labels:
       io.rancher.container.hostname_override: container_name
   jobservice:
@@ -286,9 +291,90 @@ services:
       options:
         syslog-address: "tcp://127.0.0.1:1514"
         tag: "proxy"
+    networks:
+      - harbor-notary
     labels:
       io.rancher.container.hostname_override: container_name
       com.reidweb.nginx.host: ${DOMAIN_NAMES}
       com.reidweb.nginx.port: 443
       com.reidweb.nginx.le_host: ${LE_DOMAIN_NAMES}
       com.reidweb.nginx.proto: "https"
+  notary-server:
+    image: vmware/notary-photon:server-0.5.0
+    container_name: notary-server
+    restart: always
+    networks:
+      - notary-mdb
+      - notary-sig
+      - harbor-notary
+    volumes:
+      - confignotary:/config
+    # entrypoint: /usr/bin/env sh
+    # command: -c "/migrations/migrate.sh && notary-server -config=/config/server-config.json -logf=logfmt"
+    entrypoint:
+      - /bin/sh
+      - -c
+    command:
+      - /config/entrypointnotary.sh
+    depends_on:
+      - notary-db
+      - notary-signer
+    logging:
+      driver: "syslog"
+      options:  
+        syslog-address: "tcp://127.0.0.1:1514"
+        tag: "notary-server"
+  notary-signer:
+    image: vmware/notary-photon:signer-0.5.0
+    container_name: notary-signer
+    restart: always
+    networks:
+      notary-mdb:
+      notary-sig:
+        aliases:
+          - notarysigner
+    volumes:
+      - confignotarysigner:/config
+    # entrypoint: /usr/bin/env sh
+    # command: -c "/migrations/migrate.sh && notary-signer -config=/config/signer-config.json -logf=logfmt"
+    entrypoint:
+      - /bin/sh
+      - -c
+    command:
+      - /config/entrypointnotarysigner.sh
+    depends_on:
+      - notary-db
+    logging:
+      driver: "syslog"
+      options:  
+        syslog-address: "tcp://127.0.0.1:1514"
+        tag: "notary-signer"
+  notary-db:
+    image: vmware/harbor-notary-db:mariadb-10.1.10
+    container_name: notary-db
+    restart: always
+    networks:
+      notary-mdb:
+        aliases:
+          - mysql
+    volumes:
+      - notary-mysql-initdb:/docker-entrypoint-initdb.d
+      - notary-db-data:/var/lib/mysql
+    environment:
+      - TERM=dumb
+      - MYSQL_ALLOW_EMPTY_PASSWORD="true"
+    command: mysqld --innodb_file_per_table
+    depends_on:
+      - log
+    logging:
+      driver: "syslog"
+      options:  
+        syslog-address: "tcp://127.0.0.1:1514"
+        tag: "notary-db"
+networks:
+  harbor-notary:
+    external: false
+  notary-mdb:
+    external: false
+  notary-sig:
+    external: false
