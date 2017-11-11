@@ -228,8 +228,8 @@ services:
       - -c
     command:
       - /configui/entrypointui.sh
-    networks:
-      - harbor-notary
+    # networks:
+    #   - harbor-notary
     labels:
       io.rancher.container.hostname_override: container_name
   jobservice:
@@ -303,8 +303,8 @@ services:
       options:
         syslog-address: "tcp://127.0.0.1:1514"
         tag: "proxy"
-    networks:
-      - harbor-notary
+    # networks:
+    #   - harbor-notary
     labels:
       io.rancher.container.hostname_override: container_name
       com.reidweb.nginx.host: ${DOMAIN_NAMES}
@@ -340,15 +340,13 @@ services:
     image: vmware/notary-photon:signer-0.5.0
     container_name: notary-signer
     restart: always
-    networks:
-      notary-mdb:
-      notary-sig:
-        aliases:
-          - notarysigner
+    # networks:
+    #   notary-mdb:
+    #   notary-sig:
+    #     aliases:
+    #       - notarysigner
     volumes:
       - confignotarysigner:/config
-    # entrypoint: /usr/bin/env sh
-    # command: -c "/migrations/migrate.sh && notary-signer -config=/config/signer-config.json -logf=logfmt"
     entrypoint:
       - /bin/sh
       - -c
@@ -365,10 +363,10 @@ services:
     image: vmware/harbor-notary-db:mariadb-10.1.10
     container_name: notary-db
     restart: always
-    networks:
-      notary-mdb:
-        aliases:
-          - mysql
+    # networks:
+    #   notary-mdb:
+    #     aliases:
+    #       - mysql
     volumes:
       - notary-mysql-initdb:/docker-entrypoint-initdb.d
       - notary-db-data:/var/lib/mysql
@@ -383,10 +381,10 @@ services:
       options:  
         syslog-address: "tcp://127.0.0.1:1514"
         tag: "notary-db"
-networks:
-  harbor-notary:
-    external: false
-  notary-mdb:
-    external: false
-  notary-sig:
-    external: false
+# networks:
+#   harbor-notary:
+#     external: false
+#   notary-mdb:
+#     external: false
+#   notary-sig:
+#     external: false
