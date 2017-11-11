@@ -42,6 +42,18 @@ volumes: #most volumes mappings require optimization (now all volumes map all co
   data-config:
     #external: true
     driver: ${volumedriver}
+  confignotary:
+    #external: true
+    driver: ${volumedriver}
+  confignotarysigner:
+    #external: true
+    driver: ${volumedriver}
+  notary-mysql-initdb:
+    #external: true
+    driver: ${volumedriver}
+  notary-db-data:
+    #external: true
+    driver: ${volumedriver}
 services:
   harbor-setupwrapper:
     image: reidweb/harbor-setupwrapper:latest
