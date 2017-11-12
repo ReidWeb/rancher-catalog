@@ -85,6 +85,8 @@ services:
       - confignotary:/confignotary
       - confignotarysigner:/confignotarysigner
       - notary-mysql-initdb:/confignotarydb
+      - clairconfg:/configclair
+      - clair-postgresql-init.d:/configclairdb
       - /data/harbor-certs:/data/cert:ro
     command: ["/harbor/harbor-setupwrapper.sh"]
     network_mode: "none"
