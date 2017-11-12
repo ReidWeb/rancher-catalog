@@ -349,6 +349,8 @@ services:
     depends_on:
       - notary-db
       - notary-signer
+      - log
+      - harbor-setupwrapper
     logging:
       driver: "syslog"
       options:  
@@ -372,6 +374,8 @@ services:
       - /config/entrypointnotarysigner.sh
     depends_on:
       - notary-db
+      - harbor-setupwrapper
+      - log
     logging:
       driver: "syslog"
       options:  
@@ -394,6 +398,7 @@ services:
     command: mysqld --innodb_file_per_table
     depends_on:
       - log
+      - harbor-setupwrapper
     logging:
       driver: "syslog"
       options:  
@@ -413,6 +418,7 @@ services:
       restart: always
       depends_on:
         - log
+        - harbor-setupwrapper
       volumes:
         - clairconfig:/clairconfig
         - clair-postgresql-init.d:/docker-entrypoint-initdb.d
@@ -436,6 +442,8 @@ services:
       cpu_quota: 150000
       depends_on:
         - postgres
+        - harbor-setupwrapper
+        - log
       volumes:
         - clairconfig:/config
       command: [-config, /config/config.yaml]
