@@ -452,6 +452,8 @@ services:
         options:  
           syslog-address: "tcp://127.0.0.1:1514"
           tag: "clair"
+      security_opt:
+        - label:disable
 # END CLAIR CONFIG
 networks:
   harbor-notary:
