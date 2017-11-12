@@ -86,7 +86,7 @@ services:
       - confignotarysigner:/confignotarysigner
       - notary-mysql-initdb:/confignotarydb
       - clairconfig:/configclair
-      - clair-postgresql-init.d:/configclairdb
+      - clair-postgresql-init.d:/clairpg
       - /data/harbor-certs:/data/cert:ro
     command: ["/harbor/harbor-setupwrapper.sh"]
     network_mode: "none"
@@ -417,6 +417,11 @@ services:
         - clairconfig:/clairconfig
         - clair-postgresql-init.d:/docker-entrypoint-initdb.d
         - clair-db-data:/var/lib/postgresql/data
+      entrypoint:
+        - /bin/sh
+        - -c
+      command:
+        - /clairconfig/entrypointclairdb.sh
       logging:
         driver: "syslog"
         options:  
