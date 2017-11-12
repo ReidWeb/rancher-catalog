@@ -322,8 +322,6 @@ services:
     networks:
       - harbor
       - harbor-notary
-    ports:
-      - 4443:4443
     labels:
       io.rancher.container.hostname_override: container_name
       com.reidweb.nginx.host: ${DOMAIN_NAMES}
