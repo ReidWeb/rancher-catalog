@@ -446,7 +446,11 @@ services:
         - log
       volumes:
         - clairconfig:/config
-      command: [-config, /config/config.yaml]
+      entrypoint:
+        - /bin/sh
+        - -c
+      command:
+        - /config/entrypointclair.sh
       logging:
         driver: "syslog"
         options:  
