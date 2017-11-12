@@ -54,6 +54,15 @@ volumes: #most volumes mappings require optimization (now all volumes map all co
   notary-db-data:
     #external: true
     driver: ${volumedriver}
+  clair-db-data:
+    #external: true
+    driver: ${volumedriver}
+  clair-postgresql-init.d:
+    #external: true
+    driver: ${volumedriver}
+  clairconfig:
+    #external: true
+    driver: ${volumedriver}
 services:
   harbor-setupwrapper:
     image: reidweb/harbor-setupwrapper:latest
@@ -124,6 +133,8 @@ services:
       options:
         syslog-address: "tcp://127.0.0.1:1514"
         tag: "registry"
+    networks:
+      - harbor-clair
     labels:
       io.rancher.container.hostname_override: container_name
   mysql:
@@ -228,8 +239,11 @@ services:
       - -c
     command:
       - /configui/entrypointui.sh
-    # networks:
-    #   - harbor-notary
+    networks:
+      harbor-notary:
+      harbor-clair:
+        aliases:
+          - harbor-ui
     labels:
       io.rancher.container.hostname_override: container_name
   jobservice:
@@ -263,6 +277,8 @@ services:
     entrypoint:
       - /bin/sh
       - -c
+    networks:
+      - harbor-clair
     command:
       - /configjobservice/entrypointjobservice.sh
     labels:
@@ -304,6 +320,7 @@ services:
         syslog-address: "tcp://127.0.0.1:1514"
         tag: "proxy"
     networks:
+      - harbor
       - harbor-notary
     ports:
       - 4443:4443
@@ -313,8 +330,9 @@ services:
       com.reidweb.nginx.port: 443
       com.reidweb.nginx.le_host: ${LE_DOMAIN_NAMES}
       com.reidweb.nginx.proto: "https"
+# BEGIN NOTARY CONFIG
   notary-server:
-    image: vmware/notary-photon:server-0.5.1
+    image: vmware/notary-photon:server-0.5.0
     container_name: notary-server
     restart: always
     networks:
@@ -323,8 +341,6 @@ services:
       - harbor-notary
     volumes:
       - confignotary:/config
-    # entrypoint: /usr/bin/env sh
-    # command: -c "/migrations/migrate.sh && notary-server -config=/config/server-config.json -logf=logfmt"
     entrypoint:
       - /bin/sh
       - -c
@@ -339,7 +355,7 @@ services:
         syslog-address: "tcp://127.0.0.1:1514"
         tag: "notary-server"
   notary-signer:
-    image: vmware/notary-photon:signer-0.5.1
+    image: vmware/notary-photon:signer-0.5.0
     container_name: notary-signer
     restart: always
     networks:
@@ -385,10 +401,51 @@ services:
         tag: "notary-db"
     labels:
       io.rancher.container.hostname_override: container_name
+# END NOTARY CONFIG
+# BEGIN CLAIR CONFIG
+  postgres:
+      container_name: clair-db
+      image: vmware/postgresql:9.6.4-photon
+      networks:
+        harbor-clair:
+          aliases:
+            - postgres
+      restart: always
+      depends_on:
+        - log
+      volumes:
+        - clairconfig:/clairconfig
+        - clair-postgresql-init.d:/docker-entrypoint-initdb.d
+        - clair-db-data:/var/lib/postgresql/data
+      logging:
+        driver: "syslog"
+        options:  
+          syslog-address: "tcp://127.0.0.1:1514"
+          tag: "clair-db"
+  clair:
+      container_name: clair
+      image: vmware/clair:v2.0.1-photon
+      networks:
+        - harbor-clair
+      restart: always
+      cpu_quota: 150000
+      depends_on:
+        - postgres
+      volumes:
+        - clairconfig:/config
+      command: [-config, /config/config.yaml]
+      logging:
+        driver: "syslog"
+        options:  
+          syslog-address: "tcp://127.0.0.1:1514"
+          tag: "clair"
+# END CLAIR CONFIG
 networks:
   harbor-notary:
     external: false
   notary-mdb:
     external: false
   notary-sig:
+    external: false
+  harbor-clair:
     external: false
