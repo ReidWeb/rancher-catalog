@@ -358,7 +358,7 @@ services:
       options:  
         syslog-address: "tcp://127.0.0.1:1514"
         tag: "notary-server"
-  notary-signer:
+  notarysigner:
     image: vmware/notary-photon:signer-0.5.0
     container_name: notary-signer
     restart: always
