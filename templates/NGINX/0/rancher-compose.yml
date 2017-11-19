@@ -25,3 +25,7 @@
       label: "Set to true to enable debug"
       default: "False"
       type: string
+    - variable: NONPROD
+      label: "Set to true to enable non-prod banners"
+      default: false
+      type: boolean
