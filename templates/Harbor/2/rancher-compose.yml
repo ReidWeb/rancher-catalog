@@ -1,0 +1,74 @@
+version: '2'
+.catalog:
+  name: Harbor
+  version: 1.1.1-1-rev1
+  description: |
+    Enterprise Class Container Registry by VMWare
+  minimum_rancher_version: v0.59.0
+  uuid: harbor-4
+  questions:
+    - variable: "harborhostname"
+      description: "Harbor IP, HOSTNAME or FQDN as used to acces it from the Docker CLI"
+      label: "IP/Hostname/FQDN:"
+      required: true
+      default: myregistry
+      type: "string"
+    - variable: "harbor_admin_password"
+      label: "Harbor password:"
+      description: |
+        Harbor admin password
+      default: Vmware123!
+      required: true
+      type: "string"
+    - variable: "harborhostlabel"
+      label: "Harbor will be deployed on the host(s) with this label (default: harbor-host=true)"
+      description: |
+        The various Harbor containers will be deployed on host(s) with this label
+        Set the label on one host if you want Harbor to be deployed on a single host (rancher-nfs volume driver is required for multiple hosts)
+      default: harbor-host=true
+      required: true
+      type: "string"    
+    - variable: "harborlbhostlabel"
+      label: "Rancher load balancer will be deployed on the host(s) with this label (default: harbor-lb-host=true)"
+      description: |
+        The Rancher load balancer will be deployed on host(s) with this label
+        Make sure you understand the pre-requisite as outlined in the README document above
+      default: harbor-lb-host=true
+      required: true
+      type: "string"    
+    - variable: "volumedriver"
+      description: "Volume Driver being used. Set rancher-nfs if you run in distributed mode"
+      label: "Volume Driver:"
+      required: true
+      default: local
+      type: "enum"
+      options:
+        - local
+        - rancher-nfs
+    - variable: DOMAIN_NAMES
+      label: Domain name list on which to run, comma delimited
+      description: Domain name list on which to run, comma delimited
+      required: false
+      type: string
+      default: "reg.np.docker.reidweb.com,registry.np.docker.reidweb.com,harbor.np.docker.reidweb.com,images.np.docker.reidweb.com"
+    - variable: LE_DOMAIN_NAMES
+      label: Domain name list on which to run, semi-colon delimited
+      description: Domain name list on which to run, semi-colon delimited
+      required: false
+      type: string
+      default: "reg.np.docker.reidweb.com;registry.np.docker.reidweb.com;harbor.np.docker.reidweb.com;images.np.docker.reidweb.com"
+services:
+  registry:
+    scale: 1
+  adminserver:
+    scale: 1
+  proxy:
+    scale: 1
+  jobservice:
+    scale: 1
+  ui:
+    scale: 1
+  mysql:
+    scale: 1
+  harbor-setupwrapper:
+    scale: 1
