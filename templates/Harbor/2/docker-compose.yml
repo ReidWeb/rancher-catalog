@@ -160,11 +160,11 @@ services:
     depends_on:
       - log
       - harbor-setupwrapper
-    logging:
-      driver: "syslog"
-      options:
-        syslog-address: "tcp://127.0.0.1:1514"
-        tag: "mysql"
+    # logging:
+    #   driver: "syslog"
+    #   options:
+    #     syslog-address: "tcp://127.0.0.1:1514"
+    #     tag: "mysql"
     entrypoint:
       - /bin/sh
       - -c
