@@ -65,7 +65,7 @@ volumes: #most volumes mappings require optimization (now all volumes map all co
     driver: ${volumedriver}
 services:
   harbor-setupwrapper:
-    image: reidweb/harbor-setupwrapper:v1.4.0-rc1
+    image: reidweb/harbor-setupwrapper:v1.4.0-rc2
     container_name: harbor-setupwrapper
     environment:
       - HARBORHOSTNAME=reg.np.docker.reidweb.com
@@ -165,12 +165,11 @@ services:
       options:
         syslog-address: "tcp://127.0.0.1:1514"
         tag: "mysql"
-    # entrypoint:
-    #   - /bin/sh
-    #   - -c
-    # command:
-    #   - ls -alh /configdb
-    #   - /configdb/entrypointdb.sh
+    entrypoint:
+      - /bin/sh
+      - -c
+    command:
+      - /configdb/entrypointdb.sh
     labels:
       io.rancher.container.hostname_override: container_name
   adminserver:
