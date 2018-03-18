@@ -1,7 +1,7 @@
 version: '2'
 services:
   confluence:
-    image: atlassian/confluence-server:6.7.2-openjdk
+    image: atlassian/confluence-server:6.7.2
     volumes:
       - ${DATA_PATH}:/var/atlassian/application-data/confluence
     restart: always
