@@ -1,7 +1,7 @@
 version: '2'
 services:
   confluence:
-    image: atlassian/confluence-server:6.4
+    image: 749379406778.dkr.ecr.eu-west-1.amazonaws.com/reidweb/confluence
     volumes:
       - ${DATA_PATH}:/var/atlassian/application-data/confluence
     restart: always
