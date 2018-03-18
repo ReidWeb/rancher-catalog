@@ -165,12 +165,12 @@ services:
       options:
         syslog-address: "tcp://127.0.0.1:1514"
         tag: "mysql"
-    entrypoint:
-      - /bin/sh
-      - -c
-    command:
-      - ls -alh /configdb
-      - /configdb/entrypointdb.sh
+    # entrypoint:
+    #   - /bin/sh
+    #   - -c
+    # command:
+    #   - ls -alh /configdb
+    #   - /configdb/entrypointdb.sh
     labels:
       io.rancher.container.hostname_override: container_name
   adminserver:
