@@ -1,0 +1,92 @@
+.catalog:
+  name: "Confluence by ReidWeb"
+  version: "6.8.0"
+  description: "Enterprise wiki collaboration software"
+  uuid: confluence
+  minimum_rancher_version: v1.5.5
+  questions:
+    - variable: DATA_PATH
+      label: Local path to data directory for Confluence Server or ref name
+      description: Local path to data directory for Confluence Server or ref name
+      required: true
+      type: string
+      default: "/home/atlassian/application-data/confluence"
+    - variable: DB_DATA_PATH
+      label: Local path to data directory for Confluence Server DB or ref name
+      description: Local path to data directory for Confluence Server DB or ref name
+      required: true
+      type: string
+      default: "/home/atlassian/database-data/confluence"
+    - variable: EXPOSE_APP_PORT
+      label: Whether to expose the application port outside of the stack network, may need to be exposed during setup
+      description: Whether to expose the application port outside of the stack network, may need to be exposed during setup
+      required: true
+      defaut: true
+      type: boolean
+    - variable: SERVER_SECURE
+      description: Whether running behind a reverse proxy with SSL enabled
+      label: Whether running behind a reverse proxy with SSL enabled
+      required: true
+      type: boolean
+      default: false
+    - variable: DOMAIN_NAME
+      label: Primary domain name on which to run
+      description: Primary domain name on which to run
+      required: false
+      type: string
+      default: "wiki.np.docker.reidweb.com"
+    - variable: DOMAIN_NAMES
+      label: Domain name list on which to run, comma delimited
+      description: Domain name list on which to run, comma delimited
+      required: false
+      type: string
+      default: "wiki.np.docker.reidweb.com,confluence.np.docker.reidweb.com"
+    - variable: LE_DOMAIN_NAMES
+      label: Domain name list on which to run, semi-colon delimited
+      description: Domain name list on which to run, semi-colon delimited
+      required: false
+      type: string
+      default: "wiki.np.docker.reidweb.com;confluence.np.docker.reidweb.com"
+    - variable: PROXY_PORT
+      label: Port for proxy setup in Confluence Server, leave blank if not doing so
+      description: Name for proxy setup in Confluence Server, leave blank if not doing so
+      required: false
+      type: enum
+      options:
+        - ""
+        - "80"
+        - "443"
+    - variable: PROXY_SCHEME
+      label: Scheme for proxy setup in Confluence Server, leave blank if not doing so
+      description: Scheme for proxy setup in Confluence Server, leave blank if not doing so
+      required: false
+      type: enum
+      options:
+        - ""
+        - "http"
+        - "https"
+    - variable: CROWD_SERVICE
+      label: A crowd service to connect to.
+      description: Select an external service to link to
+      required: false
+      type: service
+confluence:
+  scale: 1
+  health_check:
+    port: 8090
+    interval: 2000
+    initializing_timeout: 60000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 2
+    response_timeout: 2000
+database:
+  scale: 1
+  health_check:
+    port: 5432
+    interval: 2000
+    initializing_timeout: 60000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 2
+    response_timeout: 2000
