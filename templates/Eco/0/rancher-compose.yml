@@ -9,7 +9,7 @@
         description: Local path to data directory for Eco Server or ref name
         required: true
         type: string
-        default: "/data/openldap-certs"
+        default: "/data/eco"
 eco:
   scale: 1
   health_check:
