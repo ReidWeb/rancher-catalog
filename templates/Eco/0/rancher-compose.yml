@@ -1,0 +1,22 @@
+.catalog:
+  name: "Eco Server"
+  version: "0.7.2.5-beta"
+  description: "Atlassian Crowd identity service provider"
+  uuid: eco
+  questions:
+      - variable: DATA_PATH
+        label: Local path to data directory for Eco Server or ref name
+        description: Local path to data directory for Eco Server or ref name
+        required: true
+        type: string
+        default: "/data/openldap-certs"
+eco:
+  scale: 1
+  health_check:
+    port: 8095
+    interval: 2000
+    initializing_timeout: 60000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 2
+    response_timeout: 2000

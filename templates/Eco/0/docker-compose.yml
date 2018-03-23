@@ -1,0 +1,13 @@
+version: '2'
+services:
+  eco:
+    image: fangedhex/ecosurvivalserver:0.7.2.5-beta
+    volumes:
+      - ${DATA_PATH}:/app/Storage
+    restart: always
+    ports:
+      - 2999:2999/udp
+      - 3000:3000/tcp
+      - 3001:3001/tcp
+    labels:
+      io.rancher.container.pull_image: always
