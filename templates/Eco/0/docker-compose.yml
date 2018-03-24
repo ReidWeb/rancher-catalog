@@ -4,7 +4,7 @@ services:
     image: fangedhex/ecosurvivalserver:0.7.2.5-beta
     volumes:
       - ${DATA_PATH}:/app/Storage
-      - ${CONFIG_PATH}:/app/Config
+      - ${CONFIG_PATH}:/app/Configs
     restart: always
     ports:
       - 2999:2999/udp
