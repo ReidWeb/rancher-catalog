@@ -10,3 +10,9 @@
         required: true
         type: string
         default: "/data/eco"
+      - variable: CONFIG_PATH
+        label: Local path to config directory for Eco Server or ref name
+        description: Local path to config directory for Eco Server or ref name
+        required: true
+        type: string
+        default: "/data/eco-config"
