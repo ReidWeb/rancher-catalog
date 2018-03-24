@@ -5,7 +5,7 @@ services:
     volumes:
       - ${DATA_PATH}:/app/Storage
       - ${CONFIG_PATH}:/app/Configs
-    restart: never
+    restart: on-failure
     ports:
       - 2999:2999/udp
       - 3000:3000/tcp
