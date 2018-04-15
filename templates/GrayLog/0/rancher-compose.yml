@@ -1,4 +1,4 @@
 .catalog:
-  name: "Elastic Stack"
-  version: "6.2.3"
-  description: " Reliably and securely take data from any source, in any format, and search, analyze, and visualize it in real time."
+  name: "GrayLog"
+  version: "2.4.3"
+  description: "Enterprise Log Management for All"
