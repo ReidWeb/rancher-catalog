@@ -3,7 +3,7 @@ services:
   mongodb:
     image: mongo:3
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.3
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.3
     environment:
       - http.host=0.0.0.0
       - transport.host=localhost
