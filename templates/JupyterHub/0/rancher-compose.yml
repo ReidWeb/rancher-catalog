@@ -1,0 +1,77 @@
+.catalog:
+  name: "Confluence by ReidWeb"
+  version: "6.8.0"
+  description: "Enterprise wiki collaboration software"
+  uuid: confluence
+  minimum_rancher_version: v1.5.5
+  questions:
+    - variable: DATA_PATH
+      label: Local path to data directory for JupyterHub Server or ref name
+      description: Local path to data directory for JupyterHub Server or ref name
+      required: true
+      type: string
+      default: "/data/jupyterhub-data"
+    - variable: DB_DATA_PATH
+      label: Local path to data directory for JupyterHub Server DB or ref name
+      description: Local path to data directory for JupyterHub Server DB or ref name
+      required: true
+      type: string
+      default: "/home/jupyterhub-db"
+    - variable: EXPOSE_APP_PORT
+      label: Whether to expose the application port outside of the stack network, may need to be exposed during setup
+      description: Whether to expose the application port outside of the stack network, may need to be exposed during setup
+      required: true
+      defaut: true
+      type: boolean
+    - variable: DOMAIN_NAME
+      label: Primary domain name on which to run
+      description: Primary domain name on which to run
+      required: false
+      type: string
+      default: "jupyter.reidweb.com"
+    - variable: DOMAIN_NAMES
+      label: Domain name list on which to run, comma delimited
+      description: Domain name list on which to run, comma delimited
+      required: false
+      type: string
+      default: "jupyter.reidweb.com,notebook.reidweb.com,notebook.reidweb.com,jupiter.reidweb.com"
+    - variable: LE_DOMAIN_NAMES
+      label: Domain name list on which to run, semi-colon delimited
+      description: Domain name list on which to run, semi-colon delimited
+      required: false
+      type: string
+      default: "jupyter.reidweb.com;notebook.reidweb.com;notebook.reidweb.com;jupiter.reidweb.com"
+    - variable: POSTGRES_PASSWORD
+      label: DB pass
+      description: DB pass
+      required: true
+      type: string
+      default: "foo"
+    - variable: GITHUB_CLIENT_ID
+      label: github oauth client id
+      description: github oauth client id
+      required: true
+      type: string
+      default: "foo"
+    - variable: GITHUB_CLIENT_SECRET
+      label: github oauth secret
+      description: github oauth secret
+      required: true
+      type: string
+      default: "foo"
+    - variable: OAUTH_CALLBACK_URL
+      label: github oauth callback
+      description: github oauth callback
+      required: true
+      type: string
+      default: "https://jupyter.reidweb.com/hub/oauth_callback"
+hub:
+  scale: 1
+  health_check:
+    port: 443
+    interval: 2000
+    initializing_timeout: 60000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 2
+    response_timeout: 2000
