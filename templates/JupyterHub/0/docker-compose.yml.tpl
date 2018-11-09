@@ -37,7 +37,7 @@ services:
       # Notebook directory inside user image
       DOCKER_NOTEBOOK_DIR: "/home/jup/work"
       DOCKER_SPAWN_CMD: "start-singleuser.sh"
-      # Postgres db info
+      # Postgres db info  
       POSTGRES_DB: "jupyterhub"
       POSTGRES_HOST: hub-db
       SSL_KEY: "/etc/letsencrypt/privkey.pem"
@@ -48,7 +48,7 @@ services:
       OAUTH_CALLBACK_URL: ${OAUTH_CALLBACK_URL}
     command: >
       jupyterhub -f /srv/jupyterhub/jupyterhub_config.py
-  networks:
-    default:
-      external:
-        name: "jupyterhub-network"
+networks:
+  default:
+    external:
+      name: "jupyterhub-network"
