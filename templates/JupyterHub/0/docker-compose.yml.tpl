@@ -31,6 +31,7 @@ services:
     links:
       - hub-db
     environment:
+      DOCKER_NETWORK_NAME: "jupyterhub-network"
       # JupyterHub will spawn this Notebook image for users
       DOCKER_NOTEBOOK_IMAGE: "reidweb/jupyter-notebook:latest"
       # Notebook directory inside user image
@@ -47,3 +48,7 @@ services:
       OAUTH_CALLBACK_URL: ${OAUTH_CALLBACK_URL}
     command: >
       jupyterhub -f /srv/jupyterhub/jupyterhub_config.py
+  networks:
+    default:
+      external:
+        name: "jupyterhub-network"
