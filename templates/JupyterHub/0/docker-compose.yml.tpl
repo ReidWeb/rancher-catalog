@@ -26,7 +26,7 @@ services:
       - "/data/jupyter-certs:/etc/letsencrypt"
     labels:
       com.reidweb.nginx.host: ${DOMAIN_NAMES}
-      com.reidweb.nginx.port: 8000
+      com.reidweb.nginx.port: 8080
       com.reidweb.nginx.le_host: ${LE_DOMAIN_NAMES}
     links:
       - hub-db
